@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & Meta Tags -->
+    <title>We App Testers – Android App Testing for Google Play Production Approval</title>
+    <meta name="description" content="We App Testers helps Android developers get 100% production approval on Google Play with real testers, daily engagement and production QA submission.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://we-app-testers.com/">
+    <meta property="og:title" content="We App Testers – Android App Testing for Google Play Production Approval">
+    <meta property="og:description" content="We help Android developers get 100% production approval on Google Play with real testers, daily engagement and QA submission.">
+    <meta property="og:image" content="https://placehold.co/1200x630/3DDC84/ffffff?text=We+App+Testers">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://we-app-testers.com/">
+    <meta property="twitter:title" content="We App Testers – Android App Testing for Google Play Production Approval">
+    <meta property="twitter:description" content="We help Android developers get 100% production approval on Google Play with real testers, daily engagement and QA submission.">
+    <meta property="twitter:image" content="https://placehold.co/1200x630/3DDC84/ffffff?text=We+App+Testers">
+
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Custom CSS for fonts, animations, and specific styles */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Define brand colors for easier use */
+        :root {
+            --android-green: #3DDC84;
+            --google-blue: #4285F4;
+        }
+        
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom animation for counters */
+        @keyframes count-up {
+            from {
+                transform: translateY(15px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        .counter-anim {
+            animation: count-up 0.5s ease-out forwards;
+        }
+        
+        /* Subtle fade-in animation for sections */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 antialiased">
+
+    <!-- Header & Navigation -->
+    <header id="home" class="bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="flex items-center space-x-2">
+                <svg width="32" height="32" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="64" cy="64" r="64" fill="#3DDC84"/>
+                    <path d="M48 32L88 64L48 96V32Z" fill="white"/>
+                </svg>
+                <span class="text-xl font-bold text-gray-900 dark:text-white">We App Testers</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#about" class="hover:text-green-500 transition-colors" data-translate-key="nav_about">About</a>
+                <a href="#services" class="hover:text-green-500 transition-colors" data-translate-key="nav_services">Services</a>
+                <a href="#pricing" class="hover:text-green-500 transition-colors" data-translate-key="nav_pricing">Pricing</a>
+                <a href="#projects" class="hover:text-green-500 transition-colors" data-translate-key="nav_projects">Projects</a>
+                <a href="#contact" class="hover:text-green-500 transition-colors" data-translate-key="nav_contact">Contact</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                    <svg id="sun-icon" class="h-5 w-5 text-gray-800" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                    <svg id="moon-icon" class="h-5 w-5 text-gray-200 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+                </button>
+                 <a href="#pricing" class="hidden sm:inline-block bg-green-500 text-white font-semibold px-5 py-2 rounded-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg" data-translate-key="nav_get_quote">Get a Quote</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="py-20 md:py-32 bg-white dark:bg-gray-900/50">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold leading-tight text-gray-900 dark:text-white" data-translate-key="hero_headline">
+                    We App Testers — Get Your App Ready for Google Play Production
+                </h1>
+                <p class="mt-6 text-lg md:text-xl max-w-3xl mx-auto text-gray-600 dark:text-gray-300" data-translate-key="hero_subheadline">
+                    We test your app with real Android testers for 14 days and help you achieve 100% Production Approval.
+                </p>
+                <div class="mt-10 flex flex-col sm:flex-row justify-center items-center gap-4">
+                    <a href="#pricing" class="w-full sm:w-auto bg-green-500 text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-green-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl" data-translate-key="hero_cta_primary">Get a Quote</a>
+                    <a href="#contact" class="w-full sm:w-auto bg-blue-500 text-white font-bold px-8 py-4 rounded-lg text-lg hover:bg-blue-600 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl" data-translate-key="hero_cta_secondary">Submit Your App</a>
+                </div>
+            </div>
+            <div class="mt-16 container mx-auto px-6">
+                <div class="relative flex justify-center items-center">
+                    <img src="https://placehold.co/1000x400/E2F5EC/3DDC84?text=App+Mockups" alt="App mockups showing testing process" class="rounded-2xl shadow-2xl w-full max-w-5xl object-cover">
+                </div>
+            </div>
+            <div class="mt-16 bg-gray-100 dark:bg-gray-800 py-8">
+                <div class="container mx-auto px-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                        <div class="fade-in-section">
+                            <h3 class="text-3xl font-bold text-green-500">1000+</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-1" data-translate-key="hero_stat_apps">Apps Tested</p>
+                        </div>
+                        <div class="fade-in-section">
+                            <h3 class="text-3xl font-bold text-green-500">500+</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-1" data-translate-key="hero_stat_clients">Happy Clients</p>
+                        </div>
+                        <div class="fade-in-section">
+                            <h3 class="text-3xl font-bold text-green-500">50+</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mt-1" data-translate-key="hero_stat_countries">Countries Served</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold mb-4" data-translate-key="about_title">About Us</h2>
+                    <p class="max-w-3xl mx-auto text-gray-600 dark:text-gray-300" data-translate-key="about_desc">
+                        We App Testers is a global team of Android testers providing high-quality testing services for developers worldwide. We focus on one goal — getting your app approved for Google Play Production.
+                    </p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Services Section -->
+        <section id="services" class="py-20 bg-gray-100 dark:bg-gray-800 fade-in-section">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold" data-translate-key="services_title">Our Services</h2>
+                    <p class="mt-2 text-gray-600 dark:text-gray-300" data-translate-key="services_subtitle">Everything you need to get production ready.</p>
+                </div>
+                <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Service Card 1 -->
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                        <div class="bg-green-100 dark:bg-green-900/50 text-green-500 w-16 h-16 rounded-full flex items-center justify-center">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12V7a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7.5"></path><line x1="16" y1="5" x2="8" y2="5"></line><line x1="10" y1="21" x2="10" y2="17"></line><path d="m22 17-3 3-1.5-1.5"></path></svg>
+                        </div>
+                        <h3 class="font-bold text-xl mt-6" data-translate-key="service_1_title">Closed Testing on Google Play</h3>
+                    </div>
+                    <!-- Service Card 2 -->
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                        <div class="bg-green-100 dark:bg-green-900/50 text-green-500 w-16 h-16 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                        </div>
+                        <h3 class="font-bold text-xl mt-6" data-translate-key="service_2_title">Daily Testing with Screenshots</h3>
+                    </div>
+                    <!-- Service Card 3 -->
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                        <div class="bg-green-100 dark:bg-green-900/50 text-green-500 w-16 h-16 rounded-full flex items-center justify-center">
+                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                        </div>
+                        <h3 class="font-bold text-xl mt-6" data-translate-key="service_3_title">Play Store Feedback Collection</h3>
+                    </div>
+                    <!-- Service Card 4 -->
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                        <div class="bg-green-100 dark:bg-green-900/50 text-green-500 w-16 h-16 rounded-full flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="m9 12 2 2 4-4"></path></svg>
+                        </div>
+                        <h3 class="font-bold text-xl mt-6" data-translate-key="service_4_title">Production Approval Support</h3>
+                    </div>
+                     <!-- Service Card 5 -->
+                    <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">
+                        <div class="bg-green-100 dark:bg-green-900/50 text-green-500 w-16 h-16 rounded-full flex items-center justify-center">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m14.5 4.5 5 5"></path><path d="M11.5 11.5 6 17s-4 4-8 0l8-8"></path><path d="m15 12 1 1"></path><path d="M9.5 6.5 4 12s-4 4 0 8l8-8"></path><path d="m18 9-1-1"></path></svg>
+                        </div>
+                        <h3 class="font-bold text-xl mt-6" data-translate-key="service_5_title">Bug Reporting & Performance Review</h3>
+                    </div>
+                </div>
+                <p class="text-center mt-12 text-gray-500 dark:text-gray-400" data-translate-key="services_note">
+                    Feedback collected through Play Store private feedback, WhatsApp, and Telegram.
+                </p>
+            </div>
+        </section>
+
+        <!-- Pricing Section -->
+        <section id="pricing" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold" data-translate-key="pricing_title">Our Plans</h2>
+                    <p class="mt-2 text-gray-600 dark:text-gray-300" data-translate-key="pricing_subtitle">Simple, transparent pricing for your needs.</p>
+                </div>
+                <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                    <!-- Essential Plan -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border-2 border-green-500 transform hover:scale-105 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold text-green-500" data-translate-key="plan_1_title">Essential Production Plan</h3>
+                        <p class="mt-2 text-gray-500 dark:text-gray-400" data-translate-key="plan_1_subtitle">Best for startups and small apps</p>
+                        <div class="mt-6 text-4xl font-extrabold">$25 <span class="text-lg font-medium text-gray-500 dark:text-gray-400">/ ₹1299</span></div>
+                        <ul class="mt-8 space-y-4 text-gray-700 dark:text-gray-300">
+                            <li class="flex items-center"><svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span data-translate-key="plan_feature_testers_12">12 Real Testers — 14 Days</span></li>
+                            <li class="flex items-center"><svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span data-translate-key="plan_feature_engagement">Daily Engagement</span></li>
+                            <li class="flex items-center"><svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span data-translate-key="plan_feature_feedback">Feedback via Google Play Store</span></li>
+                            <li class="flex items-center"><svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span data-translate-key="plan_feature_qa">Production QA Submission</span></li>
+                            <li class="flex items-center font-bold text-green-600 dark:text-green-400"><svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span data-translate-key="plan_feature_guarantee">Guaranteed Production Approval</span></li>
+                            <li class="flex items-center"><svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span data-translate-key="plan_feature_support">Dedicated Customer Support</span></li>
+                        </ul>
+                        <a href="#contact" class="mt-8 block w-full text-center bg-green-500 text-white font-bold py-3 rounded-lg hover:bg-green-600 transition-colors" data-translate-key="plan_cta_buy">Buy Now</a>
+                    </div>
+                    <!-- Elite Plan -->
+                    <div class="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg border-2 border-blue-500 transform hover:scale-105 transition-transform duration-300">
+                        <h3 class="text-2xl font-bold text-blue-500" data-translate-key="plan_2_title">Elite Production Plan</h3>
+                        <p class="mt-2 text-gray-500 dark:text-gray-400" data-translate-key="plan_2_subtitle">For serious developers who want faster & deeper testing</p>
+                        <div class="mt-6 text-4xl font-extrabold">$50 <span class="text-lg font-medium text-gray-500 dark:text-gray-400">/ ₹1999</span></div>
+                        <ul class="mt-8 space-y-4 text-gray-700 dark:text-gray-300">
+                             <li class="flex items-center font-bold text-orange-600 dark:text-orange-400"><svg class="w-6 h-6 text-orange-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span data-translate-key="plan_feature_evidence">Daily Testing Evidence Shared</span></li>
+                            <li class="flex items-center"><svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span data-translate-key="plan_feature_testers_20">20 Real Testers — 14 Days</span></li>
+                            <li class="flex items-center"><svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span data-translate-key="plan_feature_engagement">Daily Engagement</span></li>
+                            <li class="flex items-center"><svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span data-translate-key="plan_feature_feedback">Feedback via Google Play Store</span></li>
+                             <li class="flex items-center font-bold text-green-600 dark:text-green-400"><svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span data-translate-key="plan_feature_guarantee">Guaranteed Production Approval</span></li>
+                            <li class="flex items-center"><svg class="w-6 h-6 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg><span data-translate-key="plan_feature_support">Dedicated Customer Support</span></li>
+                        </ul>
+                        <a href="#contact" class="mt-8 block w-full text-center bg-blue-500 text-white font-bold py-3 rounded-lg hover:bg-blue-600 transition-colors" data-translate-key="plan_cta_buy">Buy Now</a>
+                    </div>
+                </div>
+                 <p class="text-center mt-8 text-sm text-gray-500 dark:text-gray-400" data-translate-key="pricing_note">
+                    We focus on production access approval for Google Play (not long-form reports).
+                </p>
+            </div>
+        </section>
+
+        <!-- Before / After Section -->
+        <section class="py-20 bg-gray-100 dark:bg-gray-800 fade-in-section">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold" data-translate-key="results_title">From Rejected ➜ Approved</h2>
+                <p class="mt-2 text-gray-600 dark:text-gray-300" data-translate-key="results_subtitle">Real results from our testing process.</p>
+                <div class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-4xl mx-auto">
+                    <div>
+                        <span class="inline-block bg-red-500 text-white px-4 py-1 rounded-full text-sm font-bold mb-4" data-translate-key="results_before">BEFORE</span>
+                        <img src="https://placehold.co/600x400/FFE2E2/C53030?text=Production+Rejected" alt="App status before: Production Rejected" class="rounded-lg shadow-lg">
+                    </div>
+                    <div>
+                        <span class="inline-block bg-green-500 text-white px-4 py-1 rounded-full text-sm font-bold mb-4" data-translate-key="results_after">AFTER</span>
+                        <img src="https://placehold.co/600x400/E2F5EC/2F855A?text=Production+Approved" alt="App status after: Production Approved" class="rounded-lg shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold" data-translate-key="projects_title">Recent Projects</h2>
+                    <p class="mt-2 text-gray-600 dark:text-gray-300" data-translate-key="projects_subtitle">A few of the apps we've helped launch.</p>
+                </div>
+                <div class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Project Card -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg text-center">
+                        <img src="https://placehold.co/100x100/3DDC84/ffffff?text=App" alt="App Icon" class="mx-auto rounded-2xl">
+                        <h3 class="font-bold text-xl mt-4">Fintech App</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2" data-translate-key="project_1_desc">Tested for performance, critical bugs and Play Store feedback integration.</p>
+                    </div>
+                     <!-- Project Card -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg text-center">
+                        <img src="https://placehold.co/100x100/4285F4/ffffff?text=App" alt="App Icon" class="mx-auto rounded-2xl">
+                        <h3 class="font-bold text-xl mt-4">Social Media App</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2" data-translate-key="project_2_desc">Ensured smooth user experience and production readiness.</p>
+                    </div>
+                     <!-- Project Card -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg text-center">
+                        <img src="https://placehold.co/100x100/FBBC05/ffffff?text=App" alt="App Icon" class="mx-auto rounded-2xl">
+                        <h3 class="font-bold text-xl mt-4">E-commerce App</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2" data-translate-key="project_3_desc">Verified checkout flows and API integrations under real conditions.</p>
+                    </div>
+                     <!-- Project Card -->
+                    <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg text-center">
+                        <img src="https://placehold.co/100x100/EA4335/ffffff?text=App" alt="App Icon" class="mx-auto rounded-2xl">
+                        <h3 class="font-bold text-xl mt-4">Gaming App</h3>
+                        <p class="text-sm text-gray-500 dark:text-gray-400 mt-2" data-translate-key="project_4_desc">Focused on performance testing and bug hunting for a smooth launch.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-20 bg-green-500 text-white fade-in-section">
+            <div class="container mx-auto px-6">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+                    <div>
+                        <h3 class="text-4xl font-bold stat-counter" data-target="1000">0</h3>
+                        <p class="mt-2 text-green-100" data-translate-key="stats_apps">Apps Tested</p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl font-bold stat-counter" data-target="500">0</h3>
+                        <p class="mt-2 text-green-100" data-translate-key="stats_clients">Happy Clients</p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl font-bold stat-counter" data-target="50">0</h3>
+                        <p class="mt-2 text-green-100" data-translate-key="stats_countries">Countries Served</p>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl font-bold">100%</h3>
+                        <p class="mt-2 text-green-100" data-translate-key="stats_approval">Production Approval Rate</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment & Contact Section -->
+        <section id="contact" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold" data-translate-key="contact_title">Get In Touch</h2>
+                <p class="mt-2 text-gray-600 dark:text-gray-300" data-translate-key="contact_subtitle">We accept various payment methods and are ready to help you.</p>
+                <div class="mt-8 flex justify-center items-center space-x-4">
+                    <img src="https://img.shields.io/badge/PayPal-00457C?style=for-the-badge&logo=paypal&logoColor=white" alt="PayPal">
+                    <img src="https://img.shields.io/badge/UPI-00AEEF?style=for-the-badge&logo=upi&logoColor=white" alt="UPI">
+                    <img src="https://img.shields.io/badge/PhonePe-6739B7?style=for-the-badge&logo=phonepe&logoColor=white" alt="PhonePe">
+                    <img src="https://img.shields.io/badge/Binance-FCD535?style=for-the-badge&logo=binance&logoColor=black" alt="Binance">
+                </div>
+                 <div class="mt-12 bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg max-w-2xl mx-auto">
+                    <p class="font-semibold" data-translate-key="contact_phone">Phone: <a href="tel:+919122061839" class="text-green-500 hover:underline">+91 9122061839</a></p>
+                    <p class="mt-2 font-semibold" data-translate-key="contact_email">Email: <a href="mailto:WeAppTesters@gmail.com" class="text-green-500 hover:underline">WeAppTesters@gmail.com</a></p>
+                    <button id="whatsapp-contact-button" class="mt-6 w-full sm:w-auto bg-green-500 text-white font-bold px-8 py-3 rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center gap-2 mx-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.203 5.076 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+                        <span data-translate-key="contact_whatsapp_button">Message us on WhatsApp</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-black text-gray-300 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="flex justify-center space-x-6 mb-6">
+                <a href="#" class="hover:text-white" data-translate-key="footer_terms">Terms</a>
+                <a href="#" class="hover:text-white" data-translate-key="footer_privacy">Privacy Policy</a>
+                <a href="#" class="hover:text-white" data-translate-key="footer_telegram">Telegram Group</a>
+            </div>
+            <p>&copy; 2025 We App Testers. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Icon -->
+    <button id="whatsapp-floating-button" class="fixed bottom-6 right-6 bg-green-500 text-white w-16 h-16 rounded-full shadow-lg flex items-center justify-center transform hover:scale-110 transition-transform duration-300 z-50">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.371-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01s-.521.074-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.203 5.076 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+    </button>
+    
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // --- Dark Mode Functionality ---
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const sunIcon = document.getElementById('sun-icon');
+        const moonIcon = document.getElementById('moon-icon');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            sunIcon.classList.add('hidden');
+            moonIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        darkModeToggle.addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            sunIcon.classList.toggle('hidden');
+            moonIcon.classList.toggle('hidden');
+            if (document.documentElement.classList.contains('dark')) {
+                localStorage.setItem('color-theme', 'dark');
+            } else {
+                localStorage.setItem('color-theme', 'light');
+            }
+        });
+
+        // --- Intersection Observer for Animations ---
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    // Animate counters
+                    if (entry.target.classList.contains('stat-counter')) {
+                        animateCounter(entry.target);
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-section, .stat-counter').forEach(el => {
+            observer.observe(el);
+        });
+
+        // --- Counter Animation ---
+        function animateCounter(element) {
+            const target = +element.getAttribute('data-target');
+            let current = 0;
+            const increment = target / 100;
+
+            const updateCount = () => {
+                if (current < target) {
+                    current += increment;
+                    element.innerText = Math.ceil(current).toLocaleString();
+                    requestAnimationFrame(updateCount);
+                } else {
+                    element.innerText = target.toLocaleString() + (target === 1000 || target === 500 ? '+' : '');
+                }
+            };
+            updateCount();
+        }
+
+        // --- Language and WhatsApp Logic ---
+        const translations = {
+            en: {
+                nav_about: "About",
+                nav_services: "Services",
+                nav_pricing: "Pricing",
+                nav_projects: "Projects",
+                nav_contact: "Contact",
+                nav_get_quote: "Get a Quote",
+                hero_headline: "We App Testers — Get Your App Ready for Google Play Production",
+                hero_subheadline: "We test your app with real Android testers for 14 days and help you achieve 100% Production Approval.",
+                hero_cta_primary: "Get a Quote",
+                hero_cta_secondary: "Submit Your App",
+                hero_stat_apps: "Apps Tested",
+                hero_stat_clients: "Happy Clients",
+                hero_stat_countries: "Countries Served",
+                about_title: "About Us",
+                about_desc: "We App Testers is a global team of Android testers providing high-quality testing services for developers worldwide. We focus on one goal — getting your app approved for Google Play Production.",
+                services_title: "Our Services",
+                services_subtitle: "Everything you need to get production ready.",
+                service_1_title: "Closed Testing on Google Play",
+                service_2_title: "Daily Testing with Screenshots",
+                service_3_title: "Play Store Feedback Collection",
+                service_4_title: "Production Approval Support",
+                service_5_title: "Bug Reporting & Performance Review",
+                services_note: "Feedback collected through Play Store private feedback, WhatsApp, and Telegram.",
+                pricing_title: "Our Plans",
+                pricing_subtitle: "Simple, transparent pricing for your needs.",
+                plan_1_title: "Essential Production Plan",
+                plan_1_subtitle: "Best for startups and small apps",
+                plan_feature_testers_12: "12 Real Testers — 14 Days",
+                plan_feature_engagement: "Daily Engagement",
+                plan_feature_feedback: "Feedback via Google Play Store",
+                plan_feature_qa: "Production QA Submission",
+                plan_feature_guarantee: "Guaranteed Production Approval",
+                plan_feature_support: "Dedicated Customer Support",
+                plan_cta_buy: "Buy Now",
+                plan_2_title: "Elite Production Plan",
+                plan_2_subtitle: "For serious developers who want faster & deeper testing",
+                plan_feature_evidence: "Daily Testing Evidence Shared",
+                plan_feature_testers_20: "20 Real Testers — 14 Days",
+                pricing_note: "We focus on production access approval for Google Play (not long-form reports).",
+                results_title: "From Rejected ➜ Approved",
+                results_subtitle: "Real results from our testing process.",
+                results_before: "BEFORE",
+                results_after: "AFTER",
+                projects_title: "Recent Projects",
+                projects_subtitle: "A few of the apps we've helped launch.",
+                project_1_desc: "Tested for performance, critical bugs and Play Store feedback integration.",
+                project_2_desc: "Ensured smooth user experience and production readiness.",
+                project_3_desc: "Verified checkout flows and API integrations under real conditions.",
+                project_4_desc: "Focused on performance testing and bug hunting for a smooth launch.",
+                stats_apps: "Apps Tested",
+                stats_clients: "Happy Clients",
+                stats_countries: "Countries Served",
+                stats_approval: "Production Approval Rate",
+                contact_title: "Get In Touch",
+                contact_subtitle: "We accept various payment methods and are ready to help you.",
+                contact_phone: "Phone:",
+                contact_email: "Email:",
+                contact_whatsapp_button: "Message us on WhatsApp",
+                footer_terms: "Terms",
+                footer_privacy: "Privacy Policy",
+                footer_telegram: "Telegram Group",
+                whatsapp_message: "Hi We App Testers! I want my app tested for Google Play production approval. Please help.",
+            },
+            pt: {
+                nav_about: "Sobre Nós",
+                nav_services: "Serviços",
+                nav_pricing: "Preços",
+                nav_projects: "Projetos",
+                nav_contact: "Contato",
+                nav_get_quote: "Obter Cotação",
+                hero_headline: "We App Testers — Prepare seu app para a produção no Google Play",
+                hero_subheadline: "Testamos seu aplicativo com testadores Android reais por 14 dias e ajudamos você a alcançar 100% de Aprovação de Produção.",
+                hero_cta_primary: "Obter Cotação",
+                hero_cta_secondary: "Enviar seu App",
+                about_title: "Sobre Nós",
+                about_desc: "We App Testers é uma equipe global de testadores Android que fornece serviços de teste de alta qualidade para desenvolvedores em todo o mundo. Focamos em um objetivo — obter a aprovação do seu aplicativo para a Produção do Google Play.",
+                services_title: "Nossos Serviços",
+                services_subtitle: "Tudo que você precisa para estar pronto para a produção.",
+                pricing_title: "Nossos Planos",
+                pricing_subtitle: "Preços simples e transparentes para suas necessidades.",
+                plan_1_subtitle: "Ideal para startups e pequenos aplicativos",
+                plan_feature_guarantee: "Aprovação de Produção Garantida",
+                plan_cta_buy: "Comprar Agora",
+                plan_2_subtitle: "Para desenvolvedores sérios que desejam testes mais rápidos e profundos",
+                results_title: "De Rejeitado ➜ Aprovado",
+                results_subtitle: "Resultados reais do nosso processo de teste.",
+                contact_title: "Entre em Contato",
+                contact_whatsapp_button: "Envie-nos uma mensagem no WhatsApp",
+                whatsapp_message: "Oi We App Testers! Quero testar meu app para aprovação na produção do Google Play. Podem ajudar?",
+            },
+            fr: {
+                nav_about: "À Propos",
+                nav_services: "Services",
+                nav_pricing: "Tarifs",
+                nav_projects: "Projets",
+                nav_contact: "Contact",
+                nav_get_quote: "Obtenir un Devis",
+                hero_headline: "We App Testers — Préparez votre application pour la production sur Google Play",
+                hero_subheadline: "Nous testons votre application avec de vrais testeurs Android pendant 14 jours et vous aidons à obtenir une approbation de production à 100%.",
+                hero_cta_primary: "Obtenir un Devis",
+                hero_cta_secondary: "Soumettre votre App",
+                about_title: "À Propos de Nous",
+                about_desc: "We App Testers est une équipe mondiale de testeurs Android fournissant des services de test de haute qualité aux développeurs du monde entier. Nous nous concentrons sur un seul objectif : faire approuver votre application pour la production sur Google Play.",
+                services_title: "Nos Services",
+                services_subtitle: "Tout ce dont vous avez besoin pour être prêt pour la production.",
+                pricing_title: "Nos Forfaits",
+                pricing_subtitle: "Des tarifs simples et transparents pour vos besoins.",
+                plan_1_subtitle: "Idéal pour les startups et les petites applications",
+                plan_feature_guarantee: "Approbation de Production Garantie",
+                plan_cta_buy: "Acheter Maintenant",
+                plan_2_subtitle: "Pour les développeurs sérieux qui veulent des tests plus rapides et approfondis",
+                results_title: "De Rejeté ➜ Approuvé",
+                results_subtitle: "Des résultats réels de notre processus de test.",
+                contact_title: "Contactez-Nous",
+                contact_whatsapp_button: "Envoyez-nous un message sur WhatsApp",
+                whatsapp_message: "Bonjour We App Testers! Je veux faire tester mon application pour l'approbation sur Google Play. Pouvez-vous aider?",
+            }
+        };
+
+        const userLang = (navigator.language || navigator.userLanguage).toLowerCase();
+        let langCode = 'en';
+
+        if (userLang.startsWith('pt')) {
+            langCode = 'pt';
+        } else if (userLang.startsWith('fr')) {
+            langCode = 'fr';
+        }
+
+        function applyTranslations(lang) {
+            const translationSet = { ...translations.en, ...translations[lang] };
+            document.querySelectorAll('[data-translate-key]').forEach(el => {
+                const key = el.getAttribute('data-translate-key');
+                if (translationSet[key]) {
+                    el.textContent = translationSet[key];
+                }
+            });
+        }
+        
+        // Apply on load
+        if (langCode !== 'en') {
+             applyTranslations(langCode);
+        }
+
+        function handleWhatsAppClick() {
+            const phone = "919122061839";
+            const messageKey = 'whatsapp_message';
+            const translationSet = { ...translations.en, ...translations[langCode] };
+            const message = encodeURIComponent(translationSet[messageKey]);
+            const url = `https://wa.me/${phone}?text=${message}`;
+            window.open(url, '_blank');
+        }
+
+        document.getElementById('whatsapp-floating-button').addEventListener('click', handleWhatsAppClick);
+        document.getElementById('whatsapp-contact-button').addEventListener('click', handleWhatsAppClick);
+
+    });
+</script>
+
+</body>
+</html>
