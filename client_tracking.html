@@ -232,13 +232,13 @@ function AppTestingTracker(){
 
   const handleSearch=()=>{
     setError('');
-    if(!orderId.trim()) return setError('Please enter a valid order ID.');
+    if(!orderId.trim()) return setError('Please enter a valid/Latest order ID. We Delete old data');
     const fullId = `${prefix}-${orderId}-${suffix}`.toUpperCase();
     const data = DEMO_ORDERS[fullId];
     if(data) setOrderData(data);
     else {
       setOrderData(null);
-      setError('Order ID not found. Please check and try again.');
+      setError('Order ID not found. Please Contact us');
     }
   }
 
