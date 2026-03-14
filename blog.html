@@ -1,0 +1,2066 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- SEO Meta Tags -->
+    <title>WeAppTesters Blog | Google Play Console Tips & App Dev Guides</title>
+    <meta
+      name="description"
+      content="Expert insights, guides, and updates on passing Google Play's closed testing requirements, optimizing Android apps, and securing production access."
+    />
+    <meta
+      name="keywords"
+      content="Google Play Console, 14 testers rule, Android development, closed testing, app approval, app deployment, ASO, WeAppTesters blog"
+    />
+
+    <meta name="author" content="WeAppTesters" />
+    <link rel="canonical" href="https://weapptesters.com/blog.html" />
+
+    <!-- Open Graph for Social Sharing -->
+    <meta property="og:title" content="WeAppTesters Blog | Google Play Console Tips" />
+    <meta property="og:description" content="Expert insights on passing Google Play's closed testing requirements and deploying your app." />
+    <meta property="og:type" content="blog" />
+    <meta property="og:url" content="https://weapptesters.com/blog.html" />
+    <meta property="og:image" content="https://weapptesters.com/assets/og-image.png" />
+    <meta property="og:site_name" content="WeAppTesters" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="WeAppTesters Blog | Google Play Console Tips" />
+    <meta name="twitter:description" content="Expert insights on passing Google Play's closed testing requirements and deploying your app." />
+    <meta name="twitter:image" content="https://weapptesters.com/assets/og-image.png" />
+
+    <!-- JSON-LD Structured Data: Blog -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Blog",
+        "url": "https://weapptesters.com/blog.html",
+        "name": "WeAppTesters Blog",
+        "description": "Expert insights, guides, and updates on passing Google Play's closed testing requirements, optimizing Android apps, and securing production access.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "WeAppTesters",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://weapptesters.com/assets/logo.png"
+          }
+        }
+      }
+    </script>
+
+    <!-- Performance Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Plus Jakarta Sans", "sans-serif"],
+              mono: ["JetBrains Mono", "monospace"],
+            },
+            colors: {
+              lime: { 400: "#a3e635", 500: "#84cc16" },
+            },
+            animation: {
+              "text-shimmer": "text-shimmer 3s linear infinite",
+            },
+            keyframes: {
+              "text-shimmer": {
+                "0%": { backgroundPosition: "0% 50%" },
+                "100%": { backgroundPosition: "200% 50%" },
+              },
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        --bg-dark: #020617;
+        --glass-border: rgba(255, 255, 255, 0.08);
+      }
+
+      body {
+        background-color: var(--bg-dark);
+        color: #e2e8f0;
+        overflow-x: hidden;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      /* Optimized Grid Pattern */
+      .grid-pattern {
+        background-size: 40px 40px;
+        background-image:
+          linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.03) 1px,
+            transparent 1px
+          );
+        mask-image: radial-gradient(
+          circle at center,
+          black 40%,
+          transparent 100%
+        );
+        -webkit-mask-image: radial-gradient(
+          circle at center,
+          black 40%,
+          transparent 100%
+        );
+        pointer-events: none;
+      }
+
+      /* GPU Accelerated Glassmorphism */
+      .glass-card {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-border);
+        transition:
+          transform 0.3s ease,
+          box-shadow 0.3s ease,
+          border-color 0.3s ease;
+        will-change: transform;
+      }
+
+      .glass-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(163, 230, 53, 0.3);
+        box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+      }
+
+      /* Scroll Reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s cubic-bezier(0.5, 0, 0, 1),
+          transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+        will-change: opacity, transform;
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Shimmer Effect */
+      .btn-shimmer {
+        background: linear-gradient(
+          110deg,
+          #a3e635 20%,
+          #ecfccb 30%,
+          #a3e635 40%
+        );
+        background-size: 200% auto;
+        animation: shimmer 4s linear infinite;
+      }
+      @keyframes shimmer {
+        to {
+          background-position: -200% center;
+        }
+      }
+
+      /* Optimized Gradient Animation */
+      .text-gradient-animate {
+        background: linear-gradient(
+          to right,
+          #84cc16,
+          #22c55e,
+          #10b981,
+          #84cc16
+        );
+        background-size: 200% auto;
+        color: transparent;
+        -webkit-background-clip: text;
+        background-clip: text;
+        animation: text-shimmer 4s linear infinite;
+        will-change: background-position;
+      }
+    </style>
+  </head>
+  <body class="antialiased selection:bg-lime-500/30">
+    <!-- Background Elements -->
+    <div class="fixed inset-0 grid-pattern -z-10"></div>
+    <div
+      class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-lime-500/50 to-transparent z-50"
+    ></div>
+
+    <!-- Navigation -->
+  <nav id="navbar" class="fixed w-full z-40 transition-all duration-300 py-4 lg:py-6">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+      <div class="flex items-center gap-3 cursor-pointer group">
+            <img src="logo.png" alt="WeAppTesters Logo" class="w-10 h-10 object-contain relative z-10 rounded-xl">
+        <span class="text-xl font-bold tracking-tight text-white">WeApp<span class="text-lime-400">Testers</span></span>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-400">
+        <a href="index.html#proof" class="hover:text-white transition-colors">Proof</a>
+        <a href="index.html#how-it-works" class="hover:text-white transition-colors">Process</a>
+        <a href="index.html#pricing" class="hover:text-white transition-colors">Pricing</a>
+        <a href="index.html#faq" class="hover:text-white transition-colors">FAQ</a>
+        <a href="blog.html" class="hover:text-white transition-colors">Blog</a>
+        <a href="https://wa.me/919122061839?text=Hi%2C%20I%20want%20to%20get%20my%20app%20tested%20for%20Google%20Play%20production%20access"
+          target="_blank"
+          class="px-6 py-2.5 btn-shimmer text-black font-bold rounded-lg shadow-[0_0_20px_rgba(163,230,53,0.3)] hover:shadow-[0_0_30px_rgba(163,230,53,0.5)] transition-all transform hover:-translate-y-0.5 inline-block text-center">
+          Start Testing
+        </a>
+      </div>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button type="button" id="menu-btn" class="lg:hidden text-white p-2 relative z-50 cursor-pointer"
+        onclick="openMobileMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12" />
+          <line x1="4" x2="20" y1="6" y2="6" />
+          <line x1="4" x2="20" y1="18" y2="18" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Premium Mobile Sidebar -->
+    <div id="mobile-menu"
+      class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300 lg:hidden">
+      <!-- Blur Backdrop -->
+      <div id="mobile-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm pointer-events-none"
+        onclick="closeMobileMenu()"></div>
+
+      <!-- Sidebar Panel -->
+      <div id="mobile-panel"
+        class="absolute top-0 right-0 w-[85%] max-w-sm h-full bg-[#0a0f1c] border-l border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] transform translate-x-full transition-transform duration-300 ease-out flex flex-col pointer-events-auto">
+        <!-- Header -->
+        <div class="flex justify-between items-center p-6 border-b border-white/5 bg-[#020617]">
+          <div class="flex items-center gap-3">
+            <img src="logo.png" alt="WeAppTesters Logo" class="w-8 h-8 object-contain rounded-lg">
+            <span class="text-xl font-bold tracking-tight text-white">Menu</span>
+          </div>
+          <button type="button" id="close-menu-btn"
+            class="text-slate-400 hover:text-white transition-colors bg-white/5 hover:bg-white/10 p-2 rounded-lg cursor-pointer"
+            onclick="closeMobileMenu()">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Navigation Links -->
+        <div class="flex-1 overflow-y-auto p-6 flex flex-col gap-2">
+          <a href="index.html#proof"
+            class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20"
+            onclick="closeMobileMenu()">
+            <div
+              class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-lime-400/20 transition-colors text-slate-400 group-hover:text-lime-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+              </svg>
+            </div>
+            Real Proof
+          </a>
+
+          <a href="index.html#how-it-works"
+            class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20"
+            onclick="closeMobileMenu()">
+            <div
+              class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-lime-400/20 transition-colors text-slate-400 group-hover:text-lime-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+            </div>
+            Process
+          </a>
+
+          <a href="index.html#pricing"
+            class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20"
+            onclick="closeMobileMenu()">
+            <div
+              class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-lime-400/20 transition-colors text-slate-400 group-hover:text-lime-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="5" width="20" height="14" rx="2" />
+                <line x1="2" y1="10" x2="22" y2="10" />
+              </svg>
+            </div>
+            Pricing
+          </a>
+
+          <a href="index.html#faq"
+            class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20"
+            onclick="closeMobileMenu()">
+            <div
+              class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-lime-400/20 transition-colors text-slate-400 group-hover:text-lime-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                <line x1="12" y1="17" x2="12.01" y2="17" />
+              </svg>
+            </div>
+            FAQ
+          </a>
+
+          <a href="blog.html"
+            class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20"
+            onclick="closeMobileMenu()">
+            <div
+              class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-lime-400/20 transition-colors text-slate-400 group-hover:text-lime-400">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
+              </svg>
+            </div>
+            Blog
+          </a>
+        </div>
+
+        <!-- Footer CTA -->
+        <div class="p-6 border-t border-white/5 bg-[#020617]">
+          <p class="text-xs text-slate-500 mb-4 text-center uppercase tracking-widest font-bold">
+            Ready to get approved?
+          </p>
+          <a href="https://wa.me/919122061839?text=Hi%2C%20I%20want%20to%20get%20my%20app%20tested%20for%20Google%20Play%20production%20access"
+            target="_blank" onclick="closeMobileMenu()"
+            class="w-full py-4 bg-lime-400 text-black font-bold text-lg rounded-xl text-center flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(163,230,53,0.3)] hover:bg-lime-300 transition-colors">
+            Start Testing
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+    <!-- Blog Hero Section -->
+    <header
+      class="relative pt-32 pb-16 lg:pt-48 lg:pb-24 overflow-hidden text-center"
+    >
+      <!-- Glow -->
+      <div
+        class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-lime-500/10 blur-[120px] rounded-full pointer-events-none"
+      ></div>
+
+      <div class="max-w-4xl mx-auto px-6 relative z-10 reveal active">
+        <h1
+          class="text-4xl md:text-6xl font-extrabold text-white mb-6 tracking-tight"
+        >
+          App Dev
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-lime-400 to-emerald-500"
+            >Insights</span
+          >
+        </h1>
+        <p
+          class="text-lg text-slate-400 mb-8 leading-relaxed max-w-2xl mx-auto"
+        >
+          Deep dives, technical guides, and policy updates to help you navigate
+          the Google Play Console and scale your mobile applications to
+          production.
+        </p>
+
+        <!-- Category Filters -->
+        <div class="flex flex-wrap justify-center gap-3">
+          <button
+            class="px-5 py-2 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-400 text-sm font-medium transition-colors hover:bg-lime-400/20"
+          >
+            All Topics
+          </button>
+          <button
+            class="px-5 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm font-medium transition-colors hover:bg-white/10 hover:text-white"
+          >
+            App Deployment
+          </button>
+          <button
+            class="px-5 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm font-medium transition-colors hover:bg-white/10 hover:text-white"
+          >
+            Play Console Policy
+          </button>
+          <button
+            class="px-5 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm font-medium transition-colors hover:bg-white/10 hover:text-white"
+          >
+            ASO Tips
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="py-12 bg-[#050506] border-t border-white/5 relative">
+      <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <!-- Featured Post -->
+        <article class="mb-20 reveal delay-100">
+          <a
+            href="article.html?post=deployment-guide"
+            class="block glass-card rounded-3xl p-2 md:p-3 overflow-hidden group hover:border-lime-500/30 transition-all duration-300"
+          >
+            <div class="flex flex-col lg:flex-row gap-6 md:gap-10 items-center">
+              <div
+                class="w-full lg:w-3/5 h-64 sm:h-80 lg:h-[400px] overflow-hidden rounded-2xl relative"
+              >
+                <img
+                  src="https://placehold.co/1200x800/1e293b/a3e635?text=Google+Play+Deployment+Guide"
+                  alt="Step-by-step guide on Google Play Console app deployment process"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div
+                  class="absolute top-4 left-4 bg-lime-500 text-black px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg"
+                >
+                  Featured Guide
+                </div>
+              </div>
+              <div
+                class="w-full lg:w-2/5 p-4 md:p-6 lg:py-10 lg:pr-12 flex flex-col justify-center"
+              >
+                <div
+                  class="flex items-center gap-4 text-sm text-slate-500 mb-4 font-mono"
+                >
+                  <span>Nov 02, 2024</span>
+                  <span class="w-1 h-1 rounded-full bg-slate-600"></span>
+                  <span>10 Min Read</span>
+                </div>
+                <h2
+                  class="text-3xl md:text-4xl font-bold text-white mb-4 group-hover:text-lime-400 transition-colors leading-tight"
+                >
+                  The Ultimate Guide to Google Play Console App Deployment
+                </h2>
+                <p class="text-slate-400 leading-relaxed mb-8 text-lg">
+                  From setting up your developer account to filling out the data
+                  safety form and pushing your first AAB file. This step-by-step
+                  guide covers everything you need to know to launch your
+                  Android app successfully.
+                </p>
+                <span
+                  class="inline-flex items-center gap-2 text-lime-400 font-bold group-hover:gap-4 transition-all w-fit border-b border-lime-400/30 pb-1 hover:border-lime-400"
+                >
+                  Read Full Article
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-5 h-5"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+        </article>
+
+        <!-- Latest Articles Grid -->
+        <div class="mb-12 flex items-center justify-between reveal">
+          <h3 class="text-2xl font-bold text-white">Latest Articles</h3>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="articles-grid">
+          <!-- Post 1 -->
+          <a
+            href="article.html?post=testing-phases"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-100 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/3b82f6?text=Testing+Phases+Explained"
+                alt="Internal vs Closed Testing"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                App Deployment
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Oct 28, 2024
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors leading-snug"
+              >
+                Internal vs Closed vs Open Testing: What’s the Difference?
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                Understanding Google Play's release tracks is crucial. Learn
+                when to use Internal testing for your QA team and when to
+                graduate to Closed Testing.
+              </p>
+              <span
+                class="flex items-center gap-2 text-blue-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 2 -->
+          <a
+            href="article.html?post=data-safety"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-200 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/a855f7?text=Data+Safety+Form"
+                alt="Data Safety Form"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                Play Console Policy
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Oct 18, 2024
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors leading-snug"
+              >
+                How to Correctly Fill the Data Safety Form in 2024
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                A single mistake in the Data Safety form can lead to immediate
+                app rejection. Follow our checklist to declare your data types
+                securely and accurately.
+              </p>
+              <span
+                class="flex items-center gap-2 text-purple-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 3 -->
+          <a
+            href="article.html?post=aso-descriptions"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-300 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/f97316?text=ASO+Keywords"
+                alt="ASO Keywords"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                ASO Tips
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Oct 12, 2024
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-orange-400 transition-colors leading-snug"
+              >
+                Writing App Descriptions that Rank and Convert
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                Your app description isn't just for users; it's for the Play
+                Store algorithm. Learn how to naturally integrate keywords and
+                boost organic installs.
+              </p>
+              <span
+                class="flex items-center gap-2 text-orange-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 4 -->
+          <a
+            href="article.html?post=rejections"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-pink-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-100 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/ec4899?text=Handling+App+Rejections"
+                alt="Handling App Rejections"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                Play Console Policy
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Oct 05, 2024
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-pink-400 transition-colors leading-snug"
+              >
+                Top 5 Reasons Apps Get Rejected in Review (And Fixes)
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                From broken login credentials to missing privacy policies, we
+                break down the most common reasons the Google Review team
+                rejects updates.
+              </p>
+              <span
+                class="flex items-center gap-2 text-pink-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 5 -->
+          <a
+            href="article.html?post=14-tester-rule"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-lime-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-200 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/a3e635?text=20-Tester+Rule"
+                alt="20 Tester Rule"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                Guide
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Sep 28, 2024
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-lime-400 transition-colors leading-snug"
+              >
+                How to Pass Google Play's 14-Tester Rule Fast
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                Discover the exact strategies developers are using to bypass the
+                14-day closed testing hurdle without getting banned.
+              </p>
+              <span
+                class="flex items-center gap-2 text-lime-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 6 -->
+          <a
+            href="article.html?post=pre-launch"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-cyan-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-300 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/06b6d4?text=Pre-Launch+Checklist"
+                alt="Pre Launch Checklist"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                App Deployment
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Sep 15, 2024
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors leading-snug"
+              >
+                Pre-Launch Checklist: Are You Really Ready?
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                10 crucial things you must double-check in your Android
+                manifest, screenshots, and Play Console listing before hitting
+                'Send for Review'.
+              </p>
+              <span
+                class="flex items-center gap-2 text-cyan-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 7 -->
+          <a
+            href="article.html?post=aab-vs-apk"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-yellow-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-100 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/eab308?text=AAB+vs+APK"
+                alt="AAB vs APK"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                App Deployment
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Sep 10, 2024
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-yellow-400 transition-colors leading-snug"
+              >
+                AAB vs APK: Building for the Play Store
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                Google Play requires Android App Bundles (.aab). We explain why
+                they are better than APKs and how to configure your build
+                properly.
+              </p>
+              <span
+                class="flex items-center gap-2 text-yellow-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 8 -->
+          <a
+            href="article.html?post=algorithm"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-red-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-200 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/ef4444?text=Google+Play+Algorithm"
+                alt="Algorithm Changes"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                Policy Update
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Sep 05, 2024
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors leading-snug"
+              >
+                Google Play 2026 Algorithm Changes Explained
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                A deep dive into why Google is prioritizing 'app quality' and
+                'engagement metrics' over raw download numbers this year.
+              </p>
+              <span
+                class="flex items-center gap-2 text-red-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 9 -->
+          <a
+            href="article.html?post=production-answers"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-lime-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-300 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/a3e635?text=Production+Answers"
+                alt="Production Answers"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                Guide
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Sep 02, 2024
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-lime-400 transition-colors leading-snug"
+              >
+                Crafting the Perfect Production Access Answers
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                Google evaluates the form you fill out after your 14 days of
+                testing. Here is exactly how to answer their questions to
+                guarantee approval.
+              </p>
+              <span
+                class="flex items-center gap-2 text-lime-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 10 -->
+          <a
+            href="article.html?post=policy-2025"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-red-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-100 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/ef4444?text=Policy+2025"
+                alt="Policy 2025"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                Policy Update
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Dec 10, 2024
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors leading-snug"
+              >
+                Google Play Policy Enforcement: What to Expect in 2025
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                Google Play policies are constantly evolving to protect users. Here is what you need to prepare for in 2025.
+              </p>
+              <span
+                class="flex items-center gap-2 text-red-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 11 -->
+          <a
+            href="article.html?post=monetization-strategies"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-lime-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-200 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/a3e635?text=Monetization"
+                alt="Monetization"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                Guide
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Nov 25, 2024
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-lime-400 transition-colors leading-snug"
+              >
+                Maximizing App Revenue: Subscriptions vs. In-App Ads
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                Choosing the right monetization model can make or break your app's success. Let's compare the two giants: Subscriptions and Ads.
+              </p>
+              <span
+                class="flex items-center gap-2 text-lime-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 12 -->
+          <a
+            href="article.html?post=crash-rates"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-cyan-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-300 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/06b6d4?text=Crash+Rates"
+                alt="Crash Rates"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                App Deployment
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Nov 15, 2024
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors leading-snug"
+              >
+                Reducing Android App Crash Rates: An Actionable Guide
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                High crash rates not only ruin the user experience but also kill your Play Store rankings. Here is how to keep your app stable.
+              </p>
+              <span
+                class="flex items-center gap-2 text-cyan-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 13 -->
+          <a
+            href="article.html?post=app-review-times"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-amber-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-100 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/f59e0b?text=Review+Times"
+                alt="Review Times"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                Guide
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Jan 05, 2025
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors leading-snug"
+              >
+                Understanding Google Play's App Review Times
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                Waiting for an app review can be nerve-wracking. Why does it take hours for one app and weeks for another?
+              </p>
+              <span
+                class="flex items-center gap-2 text-amber-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 14 -->
+          <a
+            href="article.html?post=aso-localization"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-emerald-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-200 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/10b981?text=ASO+Localization"
+                alt="ASO Localization"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                ASO Tips
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Jan 12, 2025
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-emerald-400 transition-colors leading-snug"
+              >
+                How to Localize Your Android App for Global Reach
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                Releasing your app only in English means you are leaving millions of potential downloads on the table.
+              </p>
+              <span
+                class="flex items-center gap-2 text-emerald-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 15 -->
+          <a
+            href="article.html?post=essential-sdks"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-indigo-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-300 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/6366f1?text=Essential+SDKs"
+                alt="Essential SDKs"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                Guide
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Jan 20, 2025
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-indigo-400 transition-colors leading-snug"
+              >
+                Essential SDKs Every Android App Should Have
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                Don't reinvent the wheel. Leverage these battle-tested SDKs to build robust Android applications faster.
+              </p>
+              <span
+                class="flex items-center gap-2 text-indigo-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 16 -->
+          <a
+            href="article.html?post=developer-api"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-pink-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-100 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/ec4899?text=Developer+API"
+                alt="Developer API"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                App Deployment
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Feb 02, 2025
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-pink-400 transition-colors leading-snug"
+              >
+                A Developer's Guide to Google Play Developer API
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                Automating your workflow is crucial as your app portfolio grows. Enter the Google Play Developer API.
+              </p>
+              <span
+                class="flex items-center gap-2 text-pink-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 17 -->
+          <a
+            href="article.html?post=accessibility"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-violet-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-200 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/8b5cf6?text=Accessibility"
+                alt="Accessibility"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                Guide
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Feb 15, 2025
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-violet-400 transition-colors leading-snug"
+              >
+                Designing for Accessibility on Android
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                Accessibility isn't just a compliance requirement; it's about building an inclusive app for over a billion users worldwide with disabilities.
+              </p>
+              <span
+                class="flex items-center gap-2 text-violet-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- Post 18 -->
+          <a
+            href="article.html?post=app-vs-play"
+            class="group block glass-card rounded-3xl overflow-hidden hover:border-teal-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-300 flex flex-col"
+          >
+            <div class="h-56 overflow-hidden relative">
+              <img
+                src="https://placehold.co/800x600/1e293b/14b8a6?text=App+vs+Play"
+                alt="App vs Play"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-[#0f172a]/80 backdrop-blur-md border border-white/10 text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider"
+              >
+                Guide
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <div
+                class="text-xs text-slate-500 mb-3 flex items-center gap-2 font-mono"
+              >
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                  <line x1="16" y1="2" x2="16" y2="6" />
+                  <line x1="8" y1="2" x2="8" y2="6" />
+                  <line x1="3" y1="10" x2="21" y2="10" />
+                </svg>
+                Mar 01, 2025
+              </div>
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-teal-400 transition-colors leading-snug"
+              >
+                App Store vs. Google Play: A Comparative Strategy
+              </h3>
+              <p class="text-slate-400 text-sm leading-relaxed mb-6 flex-1">
+                Launching a cross-platform app? Your strategy can't be identical across the App Store and Google Play.
+              </p>
+              <span
+                class="flex items-center gap-2 text-teal-400 text-sm font-bold group-hover:translate-x-2 transition-transform w-fit"
+              >
+                Read Article
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M5 12h14"
+                  />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </span>
+            </div>
+          </a>
+        </div>
+
+        <div class="text-center mt-16 reveal">
+          <button
+            id="load-more-btn"
+            class="inline-flex items-center gap-2 px-8 py-3 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors text-white font-bold group"
+          >
+            Load More Articles
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-4 h-4 group-hover:animate-bounce"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M6 9l6 6 6-6" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Newsletter Section (Good for SEO & Blogs) -->
+    <section
+      class="py-20 bg-[#0b1121] border-t border-white/5 relative overflow-hidden"
+    >
+      <div
+        class="absolute top-0 right-0 w-96 h-96 bg-lime-500/5 rounded-full blur-[100px] pointer-events-none"
+      ></div>
+      <div class="max-w-4xl mx-auto px-6 relative z-10 text-center reveal">
+        <h2 class="text-3xl font-bold text-white mb-4">
+          Never Miss a Policy Update
+        </h2>
+        <p class="text-slate-400 mb-8 max-w-lg mx-auto">
+          Join 2,000+ Android developers getting our monthly insights on Play
+          Console algorithms and app growth.
+        </p>
+        <form
+          class="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto"
+          onsubmit="
+            event.preventDefault();
+            alert('Subscribed!');
+          "
+        >
+          <input
+            type="email"
+            placeholder="Enter your email address"
+            required
+            class="px-5 py-3 rounded-xl bg-[#0f172a] border border-slate-700 text-white focus:outline-none focus:border-lime-500 focus:ring-1 focus:ring-lime-500 w-full transition-colors"
+          />
+          <button
+            type="submit"
+            class="px-6 py-3 rounded-xl bg-lime-400 text-black font-bold hover:bg-lime-300 transition-colors whitespace-nowrap"
+          >
+            Subscribe
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Advanced Footer -->
+  <footer class="relative bg-[#020617] pt-24 pb-12 overflow-hidden border-t border-white/5">
+    <!-- Background Effects -->
+    <div class="absolute inset-0 grid-pattern opacity-5 pointer-events-none"></div>
+    <div
+      class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-lime-500/5 blur-[120px] rounded-full pointer-events-none">
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="grid md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
+        <!-- Brand & Socials (4 cols) -->
+        <div class="lg:col-span-4 space-y-6">
+          <div class="flex items-center gap-3">
+            <img src="logo.png" alt="WeAppTesters Logo" class="w-10 h-10 object-contain rounded-xl">
+            <div>
+              <span class="text-2xl font-bold tracking-tight text-white block leading-none">WeApp<span
+                  class="text-lime-400">Testers</span></span>
+              <span class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Production Ready</span>
+            </div>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed max-w-xs">
+            The #1 platform for Android developers to meet Google Play's 12
+            tester requirement. Real humans, real devices, guaranteed
+            approval.
+          </p>
+          <div class="flex gap-3">
+            <a href="https://www.instagram.com/weapptesters"
+              class="w-10 h-10 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-slate-400 hover:bg-[#E1306C] hover:text-white hover:border-[#E1306C]/50 transition-all duration-300 group">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.997 3.997 0 110-7.993 3.997 3.997 0 010 7.993zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+              </svg>
+            </a>
+            <a href="https://www.linkedin.com/company/weapptesters/"
+              class="w-10 h-10 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-slate-400 hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5]/50 transition-all duration-300 group">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Platform Links (2 cols) -->
+        <div class="md:col-span-1 lg:col-span-2">
+          <h4
+            class="text-white font-bold mb-6 text-sm uppercase tracking-wider border-b border-white/5 pb-2 inline-block">
+            Platform
+          </h4>
+          <ul class="space-y-3 text-sm text-slate-400">
+            <li>
+              <a href="#proof" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
+                  class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>
+                Real Proof</a>
+            </li>
+            <li>
+              <a href="#how-it-works" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
+                  class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>
+                Process</a>
+            </li>
+            <li>
+              <a href="#pricing" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
+                  class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>
+                Pricing</a>
+            </li>
+            <li>
+              <a href="#faq" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
+                  class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>
+                FAQ</a>
+            </li>
+            <li>
+              <a href="#blogs" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
+                  class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>
+                Blog</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Legal Links (2 cols) -->
+        <div class="md:col-span-1 lg:col-span-2">
+          <h4
+            class="text-white font-bold mb-6 text-sm uppercase tracking-wider border-b border-white/5 pb-2 inline-block">
+            Legal
+          </h4>
+          <ul class="space-y-3 text-sm text-slate-400">
+            <li>
+              <a href="privacy-policy.html"
+                class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
+                  class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>
+                Privacy Policy</a>
+            </li>
+            <li>
+              <a href="terms-of-service.html"
+                class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
+                  class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>
+                Terms of Service</a>
+            </li>
+            <li>
+              <a href="refund-policy.html"
+                class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
+                  class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>
+                Refund Policy</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact & Support (4 cols) -->
+        <div class="lg:col-span-4">
+          <h4
+            class="text-white font-bold mb-6 text-sm uppercase tracking-wider border-b border-white/5 pb-2 inline-block">
+            Priority Support
+          </h4>
+
+          <!-- WhatsApp Card -->
+          <a href="https://wa.me/919122061839" target="_blank"
+            class="group block bg-[#0f172a] border border-white/10 rounded-2xl p-5 hover:border-lime-500/50 transition-all duration-300 hover:shadow-[0_0_30px_rgba(163,230,53,0.15)] hover:-translate-y-1 relative overflow-hidden">
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-lime-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+            </div>
+            <div class="flex items-center gap-4 relative z-10">
+              <div
+                class="w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center text-white shadow-lg shadow-[#25d366]/20 group-hover:scale-110 transition-transform">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                </svg>
+              </div>
+              <div>
+                <div class="text-white font-bold text-sm group-hover:text-lime-400 transition-colors">
+                  Chat on WhatsApp
+                </div>
+                <div class="text-slate-400 text-xs flex items-center gap-1.5 mt-1">
+                  <span class="relative flex h-2 w-2">
+                    <span
+                      class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                  </span>
+                  <span>Online • +91 91220 61839</span>
+                </div>
+              </div>
+            </div>
+          </a>
+
+          <div
+            class="mt-6 flex items-center gap-3 text-sm text-slate-400 hover:text-white transition-colors group cursor-pointer p-2 rounded-lg hover:bg-white/5 w-fit">
+            <div
+              class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-lime-400/20 group-hover:text-lime-400 transition-colors">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+            </div>
+            <a href="mailto:weapptesters@gmail.com" class="font-medium">weapptesters@gmail.com</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div
+        class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-center items-center gap-4 text-xs text-slate-500 font-mono">
+        <div class="flex items-center gap-2">
+          <span>&copy; 2024 WeAppTesters.</span>
+          <span class="hidden md:inline">•</span>
+          <span>All Rights Reserved.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+    <!-- Interactive Scripts -->
+    <script>
+      // Navbar Interaction
+      const navbar = document.getElementById("navbar");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 20) {
+          navbar.classList.add(
+            "bg-[#020617]/90",
+            "backdrop-blur-xl",
+            "border-b",
+            "border-white/5",
+          );
+        } else {
+          navbar.classList.remove(
+            "bg-[#020617]/90",
+            "backdrop-blur-xl",
+            "border-b",
+            "border-white/5",
+          );
+        }
+      });
+
+      // Premium Mobile Sidebar Logic (Robust implementation)
+      function openMobileMenu() {
+        const menu = document.getElementById("mobile-menu");
+        const panel = document.getElementById("mobile-panel");
+        if (menu && panel) {
+          menu.classList.remove("opacity-0", "pointer-events-none");
+          menu.classList.add("opacity-100", "pointer-events-auto");
+          panel.classList.replace("translate-x-full", "translate-x-0");
+          document.body.style.overflow = "hidden"; // Stop background scroll
+        }
+      }
+
+      function closeMobileMenu() {
+        const menu = document.getElementById("mobile-menu");
+        const panel = document.getElementById("mobile-panel");
+        if (menu && panel) {
+          panel.classList.replace("translate-x-0", "translate-x-full");
+          menu.classList.remove("opacity-100", "pointer-events-auto");
+          menu.classList.add("opacity-0", "pointer-events-none");
+          document.body.style.overflow = ""; // Restore scroll
+        }
+      }
+
+      // Live Dashboard Simulation
+      const logFeed = document.getElementById("log-feed");
+      const devices = [
+        "Pixel 7 Pro",
+        "Samsung S23",
+        "OnePlus 11",
+        "Xiaomi 13",
+        "Pixel 6a",
+        "Nothing Phone 2",
+        "Samsung A54",
+      ];
+      const events = [
+        "App Opened",
+        "Screenshot Uploaded",
+        "Feedback Submitted",
+        "Session > 5 mins",
+        "Update Installed",
+      ];
+
+      function addLog() {
+        if (!logFeed) return;
+        const device = devices[Math.floor(Math.random() * devices.length)];
+        const event = events[Math.floor(Math.random() * events.length)];
+        const time = new Date().toLocaleTimeString();
+
+        const logItem = document.createElement("div");
+        logItem.className =
+          "flex items-center justify-between p-3 bg-[#0f172a] border border-white/5 rounded-lg border-l-2 border-l-lime-500 animate-[fadeIn_0.5s_ease-out]";
+        logItem.innerHTML = `
+                <div class="flex items-center gap-2 md:gap-4 overflow-hidden">
+                    <span class="text-slate-500 text-[10px]">${time}</span>
+                    <span class="text-blue-400 w-24 truncate">${device}</span>
+                    <span class="text-slate-300 truncate">${event}</span>
+                </div>
+                <span class="text-green-400 bg-green-400/10 px-2 py-1 rounded text-[10px] uppercase font-bold hidden sm:block">Success</span>
+            `;
+
+        logFeed.prepend(logItem);
+        if (logFeed.children.length > 6) {
+          logFeed.lastElementChild.remove();
+        }
+      }
+
+      // Initial logs
+      for (let i = 0; i < 5; i++) addLog();
+      setInterval(addLog, 2500);
+
+      // Counter Animation
+      const counterEl = document.getElementById("tester-count");
+      let count = 1240;
+      setInterval(() => {
+        if (count < 1340 && counterEl) {
+          count += Math.floor(Math.random() * 3);
+          counterEl.innerText = count.toLocaleString();
+        }
+      }, 2000);
+
+      // Scroll Reveal
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+            }
+          });
+        },
+        { threshold: 0.1 },
+      );
+
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+
+      // Launch Date Calculator
+      function calculateLaunchDate() {
+        const input = document.getElementById("startDate");
+        const resultContainer = document.getElementById("resultContainer");
+        const resultText = document.getElementById("resultDate");
+
+        if (input.value) {
+          const startDate = new Date(input.value);
+          const endDate = new Date(startDate);
+          endDate.setDate(startDate.getDate() + 15);
+
+          const options = {
+            weekday: "long",
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+          };
+          resultText.innerText = endDate.toLocaleDateString("en-US", options);
+
+          resultContainer.classList.remove("hidden");
+        }
+      }
+
+      // Set min date to today
+      const today = new Date().toISOString().split("T")[0];
+      const dateInput = document.getElementById("startDate");
+      if (dateInput) dateInput.setAttribute("min", today);
+    </script>
+
+    <!-- Floating WhatsApp Button -->
+    <a
+      href="https://wa.me/919122061839?text=Hi%2C%20I%20have%20a%20query%20about%20your%20testing%20service"
+      target="_blank"
+      class="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.5)] hover:bg-[#20bd5a] hover:scale-110 hover:shadow-[0_6px_25px_rgba(37,211,102,0.7)] transition-all duration-300 group flex items-center justify-center animate-[fadeIn_1s_ease-out_1s_both]"
+    >
+      <!-- WhatsApp Icon -->
+      <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+        />
+      </svg>
+
+      <!-- Notification Dot -->
+      <span class="absolute top-0 right-0 flex h-4 w-4">
+        <span
+          class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"
+        ></span>
+        <span
+          class="relative inline-flex rounded-full h-4 w-4 bg-red-500 border-2 border-white"
+        ></span>
+      </span>
+
+      <!-- Tooltip (Desktop Only) -->
+      <span
+        class="absolute right-full mr-4 bg-slate-900 text-white text-xs font-bold px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none hidden md:block"
+      >
+        Chat with us!
+      </span>
+    </a>
+  
+  </body>
+</html>
