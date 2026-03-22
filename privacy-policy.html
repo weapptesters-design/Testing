@@ -58,158 +58,293 @@
     <div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-lime-500/50 to-transparent z-50"></div>
 
     <!-- Navigation -->
-  <nav id="navbar" class="fixed w-full z-40 transition-all duration-300 py-4 lg:py-6">
-    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-      <div class="flex items-center gap-3 cursor-pointer group">
-            <img src="logo.png" alt="WeAppTesters Logo" class="w-10 h-10 object-contain relative z-10 rounded-xl">
-        <span class="text-xl font-bold tracking-tight text-white">WeApp<span class="text-lime-400">Testers</span></span>
-      </div>
+    <nav
+      id="navbar"
+      class="fixed w-full z-40 transition-all duration-300 py-4 lg:py-6"
+    >
+      <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+        <div class="flex items-center gap-3 cursor-pointer group">
+          <img
+            src="logo.png"
+            alt="WeAppTesters Logo"
+            class="w-10 h-10 object-contain relative z-10 rounded-xl"
+          />
+          <span class="text-xl font-bold tracking-tight text-white"
+            >WeApp<span class="text-lime-400">Testers</span></span
+          >
+        </div>
 
-      <!-- Desktop Menu -->
-      <div class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-400">
-        <a href="index.html#proof" class="hover:text-white transition-colors">Proof</a>
-        <a href="index.html#how-it-works" class="hover:text-white transition-colors">Process</a>
-        <a href="index.html#pricing" class="hover:text-white transition-colors">Pricing</a>
-        <a href="index.html#faq" class="hover:text-white transition-colors">FAQ</a>
-        <a href="blog.html" class="hover:text-white transition-colors">Blog</a>
-        <a href="https://wa.me/919122061839?text=Hi%2C%20I%20want%20to%20get%20my%20app%20tested%20for%20Google%20Play%20production%20access"
-          target="_blank"
-          class="px-6 py-2.5 btn-shimmer text-black font-bold rounded-lg shadow-[0_0_20px_rgba(163,230,53,0.3)] hover:shadow-[0_0_30px_rgba(163,230,53,0.5)] transition-all transform hover:-translate-y-0.5 inline-block text-center">
-          Start Testing
-        </a>
-      </div>
+        <!-- Desktop Menu -->
+        <div
+          class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-400"
+        >
+          <a href="index.html#proof" class="hover:text-white transition-colors"
+            >Proof</a
+          >
+          <a
+            href="index.html#how-it-works"
+            class="hover:text-white transition-colors"
+            >Process</a
+          >
+          <a
+            href="index.html#pricing"
+            class="hover:text-white transition-colors"
+            >Pricing</a
+          >
+          <a href="index.html#faq" class="hover:text-white transition-colors"
+            >FAQ</a
+          >
+          <a href="blog.html" class="hover:text-white transition-colors"
+            >Blog</a
+          >
+          <a
+            href="https://wa.me/919122061839?text=Hi%2C%20I%20want%20to%20get%20my%20app%20tested%20for%20Google%20Play%20production%20access"
+            target="_blank"
+            class="px-6 py-2.5 btn-shimmer text-black font-bold rounded-lg shadow-[0_0_20px_rgba(163,230,53,0.3)] hover:shadow-[0_0_30px_rgba(163,230,53,0.5)] transition-all transform hover:-translate-y-0.5 inline-block text-center"
+          >
+            Start Testing
+          </a>
+        </div>
 
-      <!-- Mobile Menu Toggle Button -->
-      <button type="button" id="menu-btn" class="lg:hidden text-white p-2 relative z-50 cursor-pointer"
-        onclick="openMobileMenu()">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="4" x2="20" y1="12" y2="12" />
-          <line x1="4" x2="20" y1="6" y2="6" />
-          <line x1="4" x2="20" y1="18" y2="18" />
-        </svg>
-      </button>
-    </div>
+        <!-- Mobile Menu Toggle Button -->
+        <button
+          type="button"
+          id="menu-btn"
+          class="lg:hidden text-white p-2 relative z-50 cursor-pointer"
+          onclick="openMobileMenu()"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-8 h-8"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="4" x2="20" y1="12" y2="12" />
+            <line x1="4" x2="20" y1="6" y2="6" />
+            <line x1="4" x2="20" y1="18" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </nav>
 
     <!-- Premium Mobile Sidebar -->
-    <div id="mobile-menu"
-      class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300 lg:hidden">
-      <!-- Blur Backdrop -->
-      <div id="mobile-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm pointer-events-none"
-        onclick="closeMobileMenu()"></div>
+      <div
+        id="mobile-menu"
+        class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300 lg:hidden"
+      >
+        <!-- Blur Backdrop -->
+        <div
+          id="mobile-backdrop"
+          class="absolute inset-0 bg-black/60 backdrop-blur-sm pointer-events-none"
+          onclick="closeMobileMenu()"
+        ></div>
 
-      <!-- Sidebar Panel -->
-      <div id="mobile-panel"
-        class="absolute top-0 right-0 w-[85%] max-w-sm h-full bg-[#0a0f1c] border-l border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] transform translate-x-full transition-transform duration-300 ease-out flex flex-col pointer-events-auto">
-        <!-- Header -->
-        <div class="flex justify-between items-center p-6 border-b border-white/5 bg-[#020617]">
-          <div class="flex items-center gap-3">
-            <img src="logo.png" alt="WeAppTesters Logo" class="w-8 h-8 object-contain rounded-lg">
-            <span class="text-xl font-bold tracking-tight text-white">Menu</span>
+        <!-- Sidebar Panel -->
+        <div
+          id="mobile-panel"
+          class="absolute top-0 right-0 w-[85%] max-w-sm h-full bg-[#0a0f1c] border-l border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] transform translate-x-full transition-transform duration-300 ease-out flex flex-col pointer-events-auto"
+        >
+          <!-- Header -->
+          <div
+            class="flex justify-between items-center p-6 border-b border-white/5 bg-[#020617]"
+          >
+            <div class="flex items-center gap-3">
+              <img
+                src="logo.png"
+                alt="WeAppTesters Logo"
+                class="w-8 h-8 object-contain rounded-lg"
+              />
+              <span class="text-xl font-bold tracking-tight text-white"
+                >Menu</span
+              >
+            </div>
+            <button
+              type="button"
+              id="close-menu-btn"
+              class="text-slate-400 hover:text-white transition-colors bg-white/5 hover:bg-white/10 p-2 rounded-lg cursor-pointer"
+              onclick="closeMobileMenu()"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M18 6 6 18" />
+                <path d="m6 6 12 12" />
+              </svg>
+            </button>
           </div>
-          <button type="button" id="close-menu-btn"
-            class="text-slate-400 hover:text-white transition-colors bg-white/5 hover:bg-white/10 p-2 rounded-lg cursor-pointer"
-            onclick="closeMobileMenu()">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
-              stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 6 6 18" />
-              <path d="m6 6 12 12" />
-            </svg>
-          </button>
+
+          <!-- Navigation Links -->
+          <div class="flex-1 overflow-y-auto p-6 flex flex-col gap-2">
+            <a
+              href="index.html#proof"
+              class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20"
+              onclick="closeMobileMenu()"
+            >
+              <div
+                class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-lime-400/20 transition-colors text-slate-400 group-hover:text-lime-400"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                  />
+                </svg>
+              </div>
+              Real Proof
+            </a>
+
+            <a
+              href="index.html#how-it-works"
+              class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20"
+              onclick="closeMobileMenu()"
+            >
+              <div
+                class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-lime-400/20 transition-colors text-slate-400 group-hover:text-lime-400"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <polyline points="12 6 12 12 16 14" />
+                </svg>
+              </div>
+              Process
+            </a>
+
+            <a
+              href="index.html#pricing"
+              class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20"
+              onclick="closeMobileMenu()"
+            >
+              <div
+                class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-lime-400/20 transition-colors text-slate-400 group-hover:text-lime-400"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <rect x="2" y="5" width="20" height="14" rx="2" />
+                  <line x1="2" y1="10" x2="22" y2="10" />
+                </svg>
+              </div>
+              Pricing
+            </a>
+
+            <a
+              href="index.html#faq"
+              class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20"
+              onclick="closeMobileMenu()"
+            >
+              <div
+                class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-lime-400/20 transition-colors text-slate-400 group-hover:text-lime-400"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10" />
+                  <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                  <line x1="12" y1="17" x2="12.01" y2="17" />
+                </svg>
+              </div>
+              FAQ
+            </a>
+
+            <a
+              href="blog.html"
+              class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20"
+              onclick="closeMobileMenu()"
+            >
+              <div
+                class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-lime-400/20 transition-colors text-slate-400 group-hover:text-lime-400"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path
+                    d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"
+                  />
+                </svg>
+              </div>
+              Blog
+            </a>
+          </div>
+
+          <!-- Footer CTA -->
+          <div class="p-6 border-t border-white/5 bg-[#020617]">
+            <p
+              class="text-xs text-slate-500 mb-4 text-center uppercase tracking-widest font-bold"
+            >
+              Ready to get approved?
+            </p>
+            <a
+              href="https://wa.me/919122061839?text=Hi%2C%20I%20want%20to%20get%20my%20app%20tested%20for%20Google%20Play%20production%20access"
+              target="_blank"
+              onclick="closeMobileMenu()"
+              class="w-full py-4 bg-lime-400 text-black font-bold text-lg rounded-xl text-center flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(163,230,53,0.3)] hover:bg-lime-300 transition-colors"
+            >
+              Start Testing
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </a>
+          </div>
         </div>
-
-        <!-- Navigation Links -->
-        <div class="flex-1 overflow-y-auto p-6 flex flex-col gap-2">
-          <a href="index.html#proof"
-            class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20"
-            onclick="closeMobileMenu()">
-            <div
-              class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-lime-400/20 transition-colors text-slate-400 group-hover:text-lime-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path
-                  d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-              </svg>
-            </div>
-            Real Proof
-          </a>
-
-          <a href="index.html#how-it-works"
-            class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20"
-            onclick="closeMobileMenu()">
-            <div
-              class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-lime-400/20 transition-colors text-slate-400 group-hover:text-lime-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-            </div>
-            Process
-          </a>
-
-          <a href="index.html#pricing"
-            class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20"
-            onclick="closeMobileMenu()">
-            <div
-              class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-lime-400/20 transition-colors text-slate-400 group-hover:text-lime-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="5" width="20" height="14" rx="2" />
-                <line x1="2" y1="10" x2="22" y2="10" />
-              </svg>
-            </div>
-            Pricing
-          </a>
-
-          <a href="index.html#faq"
-            class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20"
-            onclick="closeMobileMenu()">
-            <div
-              class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-lime-400/20 transition-colors text-slate-400 group-hover:text-lime-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-                <line x1="12" y1="17" x2="12.01" y2="17" />
-              </svg>
-            </div>
-            FAQ
-          </a>
-
-          <a href="blog.html"
-            class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20"
-            onclick="closeMobileMenu()">
-            <div
-              class="w-10 h-10 rounded-lg bg-white/5 flex items-center justify-center group-hover:bg-lime-400/20 transition-colors text-slate-400 group-hover:text-lime-400">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20" />
-              </svg>
-            </div>
-            Blog
-          </a>
-        </div>
-
-        <!-- Footer CTA -->
-        <div class="p-6 border-t border-white/5 bg-[#020617]">
-          <p class="text-xs text-slate-500 mb-4 text-center uppercase tracking-widest font-bold">
-            Ready to get approved?
-          </p>
-          <a href="https://wa.me/919122061839?text=Hi%2C%20I%20want%20to%20get%20my%20app%20tested%20for%20Google%20Play%20production%20access"
-            target="_blank" onclick="closeMobileMenu()"
-            class="w-full py-4 bg-lime-400 text-black font-bold text-lg rounded-xl text-center flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(163,230,53,0.3)] hover:bg-lime-300 transition-colors">
-            Start Testing
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M5 12h14" />
-              <path d="m12 5 7 7-7 7" />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-  </nav>
+    <!-- End Premium Mobile Sidebar -->
 
     <header class="pt-32 pb-12 lg:pt-40 lg:pb-16 relative z-10">
       <div class="max-w-4xl mx-auto px-6 text-center">
