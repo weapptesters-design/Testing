@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- SEO Meta Tags -->
     <title>WeAppTesters Blog | Google Play Console Tips & App Dev Guides</title>
+    <meta name="robots" content="index, follow" />
     <meta
       name="description"
       content="Expert insights, guides, and updates on passing Google Play's closed testing requirements, optimizing Android apps, and securing production access."
@@ -34,17 +35,17 @@
     <!-- JSON-LD Structured Data: Blog -->
     <script type="application/ld+json">
       {
-        "@context": "https://schema.org",
-        "@type": "Blog",
-        "url": "https://weapptesters.com/blog.html",
-        "name": "WeAppTesters Blog",
-        "description": "Expert insights, guides, and updates on passing Google Play's closed testing requirements, optimizing Android apps, and securing production access.",
-        "publisher": {
-          "@type": "Organization",
-          "name": "WeAppTesters",
-          "logo": {
-            "@type": "ImageObject",
-            "url": "https://weapptesters.com/assets/logo.png"
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "url": "https://weapptesters.com/blog.html",
+      "name": "WeAppTesters Blog",
+      "description": "Expert insights, guides, and updates on passing Google Play's closed testing requirements, optimizing Android apps, and securing production access.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "WeAppTesters",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://weapptesters.com/assets/logo.png"
           }
         }
       }
@@ -74,12 +75,12 @@
               lime: { 400: "#a3e635", 500: "#84cc16" },
             },
             animation: {
-              "text-shimmer": "text-shimmer 3s linear infinite",
+            "text-shimmer": "text-shimmer 3s linear infinite",
             },
             keyframes: {
-              "text-shimmer": {
-                "0%": { backgroundPosition: "0% 50%" },
-                "100%": { backgroundPosition: "200% 50%" },
+            "text-shimmer": {
+              "0%": { backgroundPosition: "0% 50%" },
+              "100%": { backgroundPosition: "200% 50%" },
               },
             },
           },
@@ -195,6 +196,13 @@
         will-change: background-position;
       }
     </style>
+  
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
   </head>
   <body class="antialiased selection:bg-lime-500/30">
     <!-- Background Elements -->
@@ -210,7 +218,7 @@
     >
       <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
         <div class="flex items-center gap-3 cursor-pointer group">
-          <img
+          <img loading="lazy" decoding="async"
             src="logo.png"
             alt="WeAppTesters Logo"
             class="w-10 h-10 object-contain relative z-10 rounded-xl"
@@ -285,21 +293,21 @@
         <!-- Blur Backdrop -->
         <div
           id="mobile-backdrop"
-          class="absolute inset-0 bg-black/60 backdrop-blur-sm pointer-events-none"
+          class="absolute inset-0 bg-black/60 backdrop-blur-sm "
           onclick="closeMobileMenu()"
         ></div>
 
         <!-- Sidebar Panel -->
         <div
           id="mobile-panel"
-          class="absolute top-0 right-0 w-[85%] max-w-sm h-full bg-[#0a0f1c] border-l border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] transform translate-x-full transition-transform duration-300 ease-out flex flex-col pointer-events-auto"
+          class="absolute top-0 right-0 w-[85%] max-w-sm h-full bg-[#0a0f1c] border-l border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] transform translate-x-full transition-transform duration-300 ease-out flex flex-col "
         >
           <!-- Header -->
           <div
             class="flex justify-between items-center p-6 border-b border-white/5 bg-[#020617]"
           >
             <div class="flex items-center gap-3">
-              <img
+              <img loading="lazy" decoding="async"
                 src="logo.png"
                 alt="WeAppTesters Logo"
                 class="w-8 h-8 object-contain rounded-lg"
@@ -490,6 +498,8 @@
             </a>
           </div>
         </div>
+
+          </div>
     <!-- End Premium Mobile Sidebar -->
 
     <!-- Blog Hero Section -->
@@ -558,7 +568,7 @@
               <div
                 class="w-full lg:w-3/5 h-64 sm:h-80 lg:h-[400px] overflow-hidden rounded-2xl relative"
               >
-                <img
+                <img loading="lazy" decoding="async"
                   src="https://placehold.co/1200x800/1e293b/a3e635?text=Google+Play+Deployment+Guide"
                   alt="Step-by-step guide on Google Play Console app deployment process"
                   class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
@@ -619,13 +629,113 @@
         </div>
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="articles-grid">
+
+          <!-- New Post 1 -->
+          <a
+            href="article.html?post=why-indie-devs-fail-google-play"
+            class="group glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-red-500/30 transition-all duration-300 flex flex-col h-full reveal"
+          >
+            <div class="h-48 overflow-hidden relative">
+              <img loading="lazy" decoding="async"
+                src="https://placehold.co/1200x600/1e293b/ef4444?text=Indie+Failures"
+                alt="Why indie devs fail Google Play closed testing"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider"
+              >
+                Google Play Guidelines
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-red-400 transition-colors line-clamp-2"
+              >
+                Why 90% of Indie Developers Fail the Google Play 14-Day Testing Rule
+              </h3>
+              <p class="text-slate-400 text-sm mb-6 line-clamp-3">
+                Avoid the "friends and family" trap and learn why emulator bot farms will get your developer account banned.
+              </p>
+              <div class="mt-auto flex items-center justify-between text-xs text-slate-500 font-mono">
+                <span>Jun 06, 2026</span>
+                <span>7 Min Read</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- New Post 2 -->
+          <a
+            href="article.html?post=how-to-get-20-testers-fast"
+            class="group glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-blue-500/30 transition-all duration-300 flex flex-col h-full reveal"
+          >
+            <div class="h-48 overflow-hidden relative">
+              <img loading="lazy" decoding="async"
+                src="https://placehold.co/1200x600/1e293b/3b82f6?text=Get+20+Testers"
+                alt="How to get 20 Android app testers fast"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider"
+              >
+                Growth & Testing
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors line-clamp-2"
+              >
+                How to Get 20 Real Testers for Your Android App Fast
+              </h3>
+              <p class="text-slate-400 text-sm mb-6 line-clamp-3">
+                The best strategies to find legitimate testers without violating Google's engagement policies.
+              </p>
+              <div class="mt-auto flex items-center justify-between text-xs text-slate-500 font-mono">
+                <span>Jun 05, 2026</span>
+                <span>6 Min Read</span>
+              </div>
+            </div>
+          </a>
+
+          <!-- New Post 3 -->
+          <a
+            href="article.html?post=google-play-rejection-reasons"
+            class="group glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-amber-500/30 transition-all duration-300 flex flex-col h-full reveal"
+          >
+            <div class="h-48 overflow-hidden relative">
+              <img loading="lazy" decoding="async"
+                src="https://placehold.co/1200x600/1e293b/f59e0b?text=Rejection+Reasons"
+                alt="Top reasons for Google Play production access rejection"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div
+                class="absolute top-4 left-4 bg-black/60 backdrop-blur-md border border-white/10 px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-wider"
+              >
+                App Approval
+              </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col">
+              <h3
+                class="text-xl font-bold text-white mb-3 group-hover:text-amber-400 transition-colors line-clamp-2"
+              >
+                Top 5 Reasons Your App Got Rejected After Closed Testing
+              </h3>
+              <p class="text-slate-400 text-sm mb-6 line-clamp-3">
+                Discover the most common mistakes developers make during the 14-day testing period and how to fix them.
+              </p>
+              <div class="mt-auto flex items-center justify-between text-xs text-slate-500 font-mono">
+                <span>Jun 04, 2026</span>
+                <span>8 Min Read</span>
+              </div>
+            </div>
+          </a>
+
           <!-- Post 1 -->
           <a
             href="article.html?post=testing-phases"
             class="group block glass-card rounded-3xl overflow-hidden hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-100 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/3b82f6?text=Testing+Phases+Explained"
                 alt="Internal vs Closed Testing"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -691,7 +801,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-purple-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-200 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/a855f7?text=Data+Safety+Form"
                 alt="Data Safety Form"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -757,7 +867,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-orange-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-300 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/f97316?text=ASO+Keywords"
                 alt="ASO Keywords"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -823,7 +933,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-pink-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-100 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/ec4899?text=Handling+App+Rejections"
                 alt="Handling App Rejections"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -889,7 +999,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-lime-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-200 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/a3e635?text=20-Tester+Rule"
                 alt="20 Tester Rule"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -954,7 +1064,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-cyan-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-300 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/06b6d4?text=Pre-Launch+Checklist"
                 alt="Pre Launch Checklist"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1020,7 +1130,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-yellow-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-100 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/eab308?text=AAB+vs+APK"
                 alt="AAB vs APK"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1086,7 +1196,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-red-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-200 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/ef4444?text=Google+Play+Algorithm"
                 alt="Algorithm Changes"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1151,7 +1261,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-lime-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-300 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/a3e635?text=Production+Answers"
                 alt="Production Answers"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1217,7 +1327,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-red-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-100 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/ef4444?text=Policy+2025"
                 alt="Policy 2025"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1281,7 +1391,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-lime-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-200 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/a3e635?text=Monetization"
                 alt="Monetization"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1345,7 +1455,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-cyan-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-300 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/06b6d4?text=Crash+Rates"
                 alt="Crash Rates"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1409,7 +1519,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-amber-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-100 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/f59e0b?text=Review+Times"
                 alt="Review Times"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1473,7 +1583,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-emerald-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-200 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/10b981?text=ASO+Localization"
                 alt="ASO Localization"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1537,7 +1647,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-indigo-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-300 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/6366f1?text=Essential+SDKs"
                 alt="Essential SDKs"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1601,7 +1711,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-pink-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-100 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/ec4899?text=Developer+API"
                 alt="Developer API"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1665,7 +1775,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-violet-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-200 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/8b5cf6?text=Accessibility"
                 alt="Accessibility"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1729,7 +1839,7 @@
             class="group block glass-card rounded-3xl overflow-hidden hover:border-teal-500/30 transition-all duration-300 hover:-translate-y-2 reveal delay-300 flex flex-col"
           >
             <div class="h-56 overflow-hidden relative">
-              <img
+              <img loading="lazy" decoding="async"
                 src="https://placehold.co/800x600/1e293b/14b8a6?text=App+vs+Play"
                 alt="App vs Play"
                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -1831,7 +1941,7 @@
           onsubmit="
             event.preventDefault();
             alert('Subscribed!');
-          "
+        "
         >
           <input
             type="email"
@@ -1862,7 +1972,7 @@
         <!-- Brand & Socials (4 cols) -->
         <div class="lg:col-span-4 space-y-6">
           <div class="flex items-center gap-3">
-            <img src="logo.png" alt="WeAppTesters Logo" class="w-10 h-10 object-contain rounded-xl">
+            <img loading="lazy" decoding="async" src="logo.png" alt="WeAppTesters Logo" class="w-10 h-10 object-contain rounded-xl">
             <div>
               <span class="text-2xl font-bold tracking-tight text-white block leading-none">WeApp<span
                   class="text-lime-400">Testers</span></span>
@@ -1900,22 +2010,22 @@
           </h4>
           <ul class="space-y-3 text-sm text-slate-400">
             <li>
-              <a href="#proof" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
+              <a href="index.html#proof" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
                   class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>
                 Real Proof</a>
             </li>
             <li>
-              <a href="#how-it-works" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
+              <a href="index.html#how-it-works" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
                   class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>
                 Process</a>
             </li>
             <li>
-              <a href="#pricing" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
+              <a href="index.html#pricing" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
                   class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>
                 Pricing</a>
             </li>
             <li>
-              <a href="#faq" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
+              <a href="index.html#faq" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
                   class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>
                 FAQ</a>
             </li>
@@ -2026,17 +2136,17 @@
       window.addEventListener("scroll", () => {
         if (window.scrollY > 20) {
           navbar.classList.add(
-            "bg-[#020617]/90",
-            "backdrop-blur-xl",
-            "border-b",
-            "border-white/5",
+          "bg-[#020617]/90",
+          "backdrop-blur-xl",
+          "border-b",
+          "border-white/5",
           );
         } else {
           navbar.classList.remove(
-            "bg-[#020617]/90",
-            "backdrop-blur-xl",
-            "border-b",
-            "border-white/5",
+          "bg-[#020617]/90",
+          "backdrop-blur-xl",
+          "border-b",
+          "border-white/5",
           );
         }
       });
@@ -2045,42 +2155,45 @@
       function openMobileMenu() {
         const menu = document.getElementById("mobile-menu");
         const panel = document.getElementById("mobile-panel");
+        const navbar = document.getElementById("navbar");
         if (menu && panel) {
           menu.classList.remove("opacity-0", "pointer-events-none");
           menu.classList.add("opacity-100", "pointer-events-auto");
           panel.classList.replace("translate-x-full", "translate-x-0");
-          document.body.style.overflow = "hidden"; // Stop background scroll
+          // Removed overflow hidden to prevent iOS Safari jump to top bug
+          if (navbar) {
+            navbar.classList.remove("backdrop-blur-xl");
+          }
         }
       }
 
       function closeMobileMenu() {
         const menu = document.getElementById("mobile-menu");
         const panel = document.getElementById("mobile-panel");
+        const navbar = document.getElementById("navbar");
         if (menu && panel) {
           panel.classList.replace("translate-x-0", "translate-x-full");
           menu.classList.remove("opacity-100", "pointer-events-auto");
           menu.classList.add("opacity-0", "pointer-events-none");
-          document.body.style.overflow = ""; // Restore scroll
+          if (navbar && window.scrollY > 20) {
+            navbar.classList.add("backdrop-blur-xl");
+          }
         }
       }
 
       // Live Dashboard Simulation
       const logFeed = document.getElementById("log-feed");
-      const devices = [
-        "Pixel 7 Pro",
-        "Samsung S23",
-        "OnePlus 11",
-        "Xiaomi 13",
-        "Pixel 6a",
-        "Nothing Phone 2",
-        "Samsung A54",
+            const devices = [
+        "Day 1", "Day 2", "Day 3", "Day 4", "Day 5", 
+        "Day 6", "Day 7", "Day 8", "Day 9", "Day 10", 
+        "Day 11", "Day 12", "Day 13", "Day 14"
       ];
       const events = [
-        "App Opened",
-        "Screenshot Uploaded",
-        "Feedback Submitted",
-        "Session > 5 mins",
-        "Update Installed",
+      "App Opened",
+      "Screenshot Uploaded",
+      "Feedback Submitted",
+      "Session > 5 mins",
+      "Update Installed",
       ];
 
       function addLog() {
@@ -2091,7 +2204,7 @@
 
         const logItem = document.createElement("div");
         logItem.className =
-          "flex items-center justify-between p-3 bg-[#0f172a] border border-white/5 rounded-lg border-l-2 border-l-lime-500 animate-[fadeIn_0.5s_ease-out]";
+        "flex items-center justify-between p-3 bg-[#0f172a] border border-white/5 rounded-lg border-l-2 border-l-lime-500 animate-[fadeIn_0.5s_ease-out]";
         logItem.innerHTML = `
                 <div class="flex items-center gap-2 md:gap-4 overflow-hidden">
                     <span class="text-slate-500 text-[10px]">${time}</span>
