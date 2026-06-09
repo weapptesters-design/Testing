@@ -1,6 +1,9 @@
 <!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
+    <title>Guide: How to Pass Google Play Console Closed Testing | WeAppTesters</title>
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://weapptesters.com/article.html" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title id="page-title">
@@ -129,6 +132,13 @@
         color: #a3e635;
       }
     </style>
+  
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
   </head>
   <body class="antialiased selection:bg-lime-500/30">
     <div class="fixed inset-0 grid-pattern -z-10"></div>
@@ -223,21 +233,21 @@
         <!-- Blur Backdrop -->
         <div
           id="mobile-backdrop"
-          class="absolute inset-0 bg-black/60 backdrop-blur-sm pointer-events-none"
+          class="absolute inset-0 bg-black/60 backdrop-blur-sm "
           onclick="closeMobileMenu()"
         ></div>
 
         <!-- Sidebar Panel -->
         <div
           id="mobile-panel"
-          class="absolute top-0 right-0 w-[85%] max-w-sm h-full bg-[#0a0f1c] border-l border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] transform translate-x-full transition-transform duration-300 ease-out flex flex-col pointer-events-auto"
+          class="absolute top-0 right-0 w-[85%] max-w-sm h-full bg-[#0a0f1c] border-l border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] transform translate-x-full transition-transform duration-300 ease-out flex flex-col "
         >
           <!-- Header -->
           <div
             class="flex justify-between items-center p-6 border-b border-white/5 bg-[#020617]"
           >
             <div class="flex items-center gap-3">
-              <img
+              <img loading="lazy" decoding="async"
                 src="logo.png"
                 alt="WeAppTesters Logo"
                 class="w-8 h-8 object-contain rounded-lg"
@@ -428,10 +438,15 @@
             </a>
           </div>
         </div>
+
+          </div>
     <!-- End Premium Mobile Sidebar -->
 
     <!-- Article Header -->
     <header class="pt-32 pb-12 lg:pt-40 lg:pb-16 relative z-10">
+    <title>Guide: How to Pass Google Play Console Closed Testing | WeAppTesters</title>
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://weapptesters.com/article.html" />
       <div class="max-w-4xl mx-auto px-6 text-center">
         <a
           href="https://weapptesters.com/blog"
@@ -474,7 +489,7 @@
         <div
           class="w-full aspect-[21/9] md:aspect-[21/9] rounded-3xl overflow-hidden mt-12 relative border border-white/10 shadow-2xl bg-slate-900"
         >
-          <img
+          <img loading="lazy" decoding="async"
             id="article-image"
             src=""
             alt="Article Hero"
@@ -529,7 +544,7 @@
         <!-- Brand & Socials (4 cols) -->
         <div class="lg:col-span-4 space-y-6">
           <div class="flex items-center gap-3">
-            <img src="logo.png" alt="WeAppTesters Logo" class="w-10 h-10 object-contain rounded-xl">
+            <img loading="lazy" decoding="async" src="logo.png" alt="WeAppTesters Logo" class="w-10 h-10 object-contain rounded-xl">
             <div>
               <span class="text-2xl font-bold tracking-tight text-white block leading-none">We<span
                   class="text-lime-400">App</span>Testers</span>
@@ -567,7 +582,7 @@
           </h4>
           <ul class="space-y-3 text-sm text-slate-400">
             <li>
-              <a href="#proof" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
+              <a href="index.html#proof" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
                   class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>
                 Real Proof</a>
             </li>
@@ -582,7 +597,7 @@
                 Pricing</a>
             </li>
             <li>
-              <a href="#faq" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
+              <a href="index.html#faq" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span
                   class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>
                 FAQ</a>
             </li>
@@ -689,13 +704,69 @@
     <!-- Dynamic Content Script -->
     <script>
       const articlesData = {
-        "deployment-guide": {
+
+      "why-indie-devs-fail-google-play": {
+          title: "Why 90% of Indie Developers Fail the Google Play 14-Day Testing Rule",
+          category: "Google Play Guidelines",
+          date: "Jun 06, 2026",
+          readTime: "7 Min Read",
+          image: "https://placehold.co/1200x600/1e293b/ef4444?text=Indie+Failures",
+          content: `
+            <p>Since Google introduced the strict 14-day closed testing rule requiring 20 opt-in testers, the barrier to entry for indie Android developers has never been higher. According to our internal data, nearly 90% of indie developers fail their first attempt at production access.</p>
+            <h2>The "Friends & Family" Trap</h2>
+            <p>The most common mistake developers make is asking 20 friends or family members to download their app. While this fulfills the initial opt-in requirement, it completely fails the <strong>engagement metric</strong>. Your friends will likely open the app once, say "cool app," and never touch it again. After 14 days, Google's algorithm detects zero active sessions and denies production access citing "insufficient testing data."</p>
+            <h2>Bot Farms and Emulator Detection</h2>
+            <p>Frustrated by the high bar, many developers turn to cheap online services that promise 20 testers for $10. These services use automated emulator scripts located in server farms. Google's Play Protect and analytics immediately flag these accounts because they share identical IP subnets, lack real-world telemetry (no battery drain, no screen touches), and act identically.</p>
+            <p>The result? Not only is production access denied, but your developer account gets flagged for policy violations, putting you at risk of a lifetime ban.</p>
+            <h2>The WeAppTesters Solution</h2>
+            <p>To pass, you need <strong>real human engagement</strong>. Google wants to see crash reports, ANR logs, diverse device models, and organic usage patterns. This is exactly why <a href="index.html#pricing" class="text-lime-400 underline">WeAppTesters</a> utilizes a network of verified physical devices to generate the exact telemetry Google requires to hit the green light.</p>
+          `
+      },
+      "how-to-get-20-testers-fast": {
+          title: "How to Get 20 Real Testers for Your Android App Fast",
+          category: "Growth & Testing",
+          date: "Jun 05, 2026",
+          readTime: "6 Min Read",
+          image: "https://placehold.co/1200x600/1e293b/3b82f6?text=Get+20+Testers",
+          content: `
+            <p>Securing 20 testers for 14 continuous days is the hardest part of launching an Android app today. If you don't have an existing audience, you are in for an uphill battle. Here are the most effective ways to secure testers.</p>
+            <h2>1. Reddit and Developer Communities</h2>
+            <p>Subreddits like r/AndroidDev and r/AppTesters are filled with developers looking for mutually beneficial testing swaps. The catch? You have to spend 14 days testing 20 other people's apps to get them to test yours. It is highly time-consuming, and drop-off rates are notoriously high.</p>
+            <h2>2. Beta Testing Platforms</h2>
+            <p>There are crowdsourced platforms where you can pay users to test your app. However, quality control is often non-existent. Testers might just open the app and close it immediately, which fails Google's engagement check.</p>
+            <h2>3. The "WeAppTesters" Guarantee</h2>
+            <p>If you value your time and want a guaranteed pass, a professional testing service is the best route. Our service provides 12 primary testers and 8 backup testers (to ensure 100% compliance) who actively engage with your app daily, generating the necessary logs and data Google requires to approve your production access.</p>
+          `
+      },
+      "google-play-rejection-reasons": {
+          title: "Top 5 Reasons Your App Got Rejected After Closed Testing",
+          category: "App Approval",
+          date: "Jun 04, 2026",
+          readTime: "8 Min Read",
+          image: "https://placehold.co/1200x600/1e293b/f59e0b?text=Rejection+Reasons",
+          content: `
+            <p>Waiting 14 days only to receive an email from Google Play stating your production access has been denied is devastating. Here are the top 5 reasons why it happens and how to fix it.</p>
+            <h2>1. Insufficient Engagement</h2>
+            <p>Google tracks "active sessions." If your 20 testers opted in but never actually opened the app during the 14 days, Google assumes the app is broken or uninteresting. Testers must actively tap, scroll, and use the app multiple times across the two-week period.</p>
+            <h2>2. Lack of Device Diversity</h2>
+            <p>If all 20 testers used the exact same Android version and device model (often a sign of a bot farm), Google will flag the test as illegitimate. Real tests span multiple OEMs (Samsung, Pixel, Xiaomi) and OS versions.</p>
+            <h2>3. Zero Feedback Submitted</h2>
+            <p>Google requires you to answer questions about what feedback you received during testing. If your testers didn't submit any feedback via the Play Store or your internal channels, your application for production access will likely fail.</p>
+            <h2>4. Policy Violations</h2>
+            <p>Often, apps get rejected not because of the testing, but because they violate a core policy (like missing privacy policies or broken data safety forms) discovered during the review phase.</p>
+            <h2>5. High Crash Rates</h2>
+            <p>If the app crashes constantly for your testers, Google won't let it into production. Monitor your Play Console Vitals closely.</p>
+            <p>Want to avoid all these pitfalls? Use <a href="index.html" class="text-lime-400 underline">WeAppTesters</a> to secure guaranteed production access with our team of real device testers.</p>
+          `
+      },
+
+      "deployment-guide": {
           title: "The Ultimate Guide to Google Play Console App Deployment",
           category: "Featured Guide",
           date: "Nov 02, 2024",
           readTime: "10 Min Read",
           image:
-            "https://placehold.co/1200x600/1e293b/a3e635?text=App+Deployment",
+          "https://placehold.co/1200x600/1e293b/a3e635?text=App+Deployment",
           content: `
             <p>Deploying an app to the Google Play Store is no longer just about uploading an APK and hitting "Publish." In 2024 and beyond, Google has introduced strict testing requirements, data safety forms, and rigid review processes to ensure high-quality apps make it to the store.</p>
             <p>If you are an indie developer or a startup launching your first Android app, the Play Console can feel like a labyrinth. This guide will walk you through the exact steps to go from code to production without getting rejected.</p>
@@ -727,13 +798,13 @@
             <p>Be thorough. If your answers are vague, Google will force you to test for another 14 days.</p>
           `,
         },
-        "testing-phases": {
+      "testing-phases": {
           title: "Internal vs Closed vs Open Testing: What's the Difference?",
           category: "App Deployment",
           date: "Oct 28, 2024",
           readTime: "6 Min Read",
           image:
-            "https://placehold.co/1200x600/1e293b/3b82f6?text=Testing+Phases+Explained",
+          "https://placehold.co/1200x600/1e293b/3b82f6?text=Testing+Phases+Explained",
           content: `
             <p>Understanding Google Play's release tracks is crucial for a smooth launch. Google provides three main testing tracks before you hit production. Here is exactly when and how to use each one.</p>
             <h2>1. Internal Testing</h2>
@@ -744,13 +815,13 @@
             <p>Anyone on Google Play can join this test. They will see your app in the store but with a "Beta" or "Early Access" label. It's great for getting large-scale feedback and crash reports before a full public release. Unlike Closed Testing, Open Testing is largely optional for personal accounts, but highly recommended for enterprise apps.</p>
           `,
         },
-        "data-safety": {
+      "data-safety": {
           title: "How to Correctly Fill the Data Safety Form in 2024",
           category: "Play Console Policy",
           date: "Oct 18, 2024",
           readTime: "8 Min Read",
           image:
-            "https://placehold.co/1200x600/1e293b/a855f7?text=Data+Safety+Form",
+          "https://placehold.co/1200x600/1e293b/a855f7?text=Data+Safety+Form",
           content: `
             <p>A single mistake in the Data Safety form can lead to immediate app rejection. Google takes user privacy seriously, and hiding data collection—even accidentally—is a violation of their policy.</p>
             <h2>Audit Your Third-Party SDKs</h2>
@@ -765,13 +836,13 @@
             <p>As of late 2023, if your app allows users to create an account, you <strong>must</strong> provide a way for them to delete their account and associated data directly within the app and via a web link. Ensure you have a clear "Delete Account" button in your app settings.</p>
           `,
         },
-        "aso-descriptions": {
+      "aso-descriptions": {
           title: "Writing App Descriptions that Rank and Convert",
           category: "ASO Tips",
           date: "Oct 12, 2024",
           readTime: "7 Min Read",
           image:
-            "https://placehold.co/1200x600/1e293b/f97316?text=ASO+Keywords",
+          "https://placehold.co/1200x600/1e293b/f97316?text=ASO+Keywords",
           content: `
             <p>Your app description isn't just for users; it's heavily crawled by the Play Store algorithm. Learn how to naturally integrate keywords and boost organic installs.</p>
             <h2>The First 80 Characters</h2>
@@ -792,7 +863,7 @@
           date: "Oct 05, 2024",
           readTime: "5 Min Read",
           image:
-            "https://placehold.co/1200x600/1e293b/ec4899?text=Handling+App+Rejections",
+          "https://placehold.co/1200x600/1e293b/ec4899?text=Handling+App+Rejections",
           content: `
             <p>Getting a rejection email from Google Play is frustrating. Here are the top 5 reasons the Google Review team rejects updates and how to fix them.</p>
             <h2>1. Broken Login Credentials</h2>
@@ -807,13 +878,13 @@
             <p>Check your <code>AndroidManifest.xml</code>. If you are requesting <code>READ_CONTACTS</code> but your app doesn't have a feature that uses contacts, the reviewer will flag it.</p>
           `,
         },
-        "14-tester-rule": {
+      "14-tester-rule": {
           title: "How to Pass Google Play's 14-Tester Rule Fast",
           category: "Guide",
           date: "Sep 28, 2024",
           readTime: "6 Min Read",
           image:
-            "https://placehold.co/1200x600/1e293b/a3e635?text=14-Tester+Rule",
+          "https://placehold.co/1200x600/1e293b/a3e635?text=14-Tester+Rule",
           content: `
             <p>Google's recent policy change requiring 14 continuous testers for 14 days has stalled thousands of indie developers. Here is how to pass it efficiently.</p>
             <h2>The Problem with "Sub for Sub" Groups</h2>
@@ -824,13 +895,13 @@
             <p>Instead of begging friends and family (who often have the same IP address or Wi-Fi network, triggering Google's spam filters), use a verified service like WeAppTesters. We guarantee 14 discrete, physical devices on different networks, ensuring a 100% compliance rate with Google's algorithm.</p>
           `,
         },
-        "pre-launch": {
+      "pre-launch": {
           title: "Pre-Launch Checklist: Are You Really Ready?",
           category: "App Deployment",
           date: "Sep 15, 2024",
           readTime: "7 Min Read",
           image:
-            "https://placehold.co/1200x600/1e293b/06b6d4?text=Pre-Launch+Checklist",
+          "https://placehold.co/1200x600/1e293b/06b6d4?text=Pre-Launch+Checklist",
           content: `
             <p>Before you hit the 'Send for Review' button, ensure you have checked off these critical items.</p>
             <ul>
@@ -842,7 +913,7 @@
             </ul>
           `,
         },
-        "aab-vs-apk": {
+      "aab-vs-apk": {
           title: "AAB vs APK: Building for the Play Store",
           category: "App Deployment",
           date: "Sep 10, 2024",
@@ -864,7 +935,7 @@
           date: "Sep 05, 2024",
           readTime: "6 Min Read",
           image:
-            "https://placehold.co/1200x600/1e293b/ef4444?text=Google+Play+Algorithm",
+          "https://placehold.co/1200x600/1e293b/ef4444?text=Google+Play+Algorithm",
           content: `
             <p>Google is shifting its focus heavily towards App Quality over raw installation metrics. Here is what you need to know.</p>
             <h2>Vitals Matter More Than Ever</h2>
@@ -873,13 +944,13 @@
             <p>If users install your app and delete it within 24 hours, Google's algorithm marks your app as "low quality" or "clickbait." To combat this, focus heavily on your onboarding experience. If users understand the value of your app in the first 30 seconds, they won't uninstall it.</p>
           `,
         },
-        "production-answers": {
+      "production-answers": {
           title: "Crafting the Perfect Production Access Answers",
           category: "Guide",
           date: "Sep 02, 2024",
           readTime: "5 Min Read",
           image:
-            "https://placehold.co/1200x600/1e293b/a3e635?text=Production+Answers",
+          "https://placehold.co/1200x600/1e293b/a3e635?text=Production+Answers",
           content: `
             <p>After successfully completing your 14 days of closed testing, Google doesn't automatically grant production access. You must fill out a final evaluation form. Your answers here dictate whether you get approved or sent back to testing.</p>
             <h2>How did you gather testers?</h2>
@@ -891,7 +962,7 @@
             <p>Map this directly to the feedback. "Based on feedback regarding navigation difficulty on smaller screens, we increased the touch target size of the bottom navbar and resolved a minor memory leak detected on Android 12."</p>
           `,
         },
-        "policy-2025": {
+      "policy-2025": {
           title: "Google Play Policy Enforcement: What to Expect in 2025",
           category: "Policy Update",
           date: "Dec 10, 2024",
@@ -907,7 +978,7 @@
             <p>Apps offering auto-renewing subscriptions must make the cancellation process transparent and accessible directly within the app, not just through the Play Store subscriptions page.</p>
           `,
         },
-        "monetization-strategies": {
+      "monetization-strategies": {
           title: "Maximizing App Revenue: Subscriptions vs. In-App Ads",
           category: "Guide",
           date: "Nov 25, 2024",
@@ -923,7 +994,7 @@
             <p>The most successful apps use a hybrid model: show ads to free users, and offer a premium subscription to remove ads and unlock advanced features. This captures value from both user segments.</p>
           `,
         },
-        "crash-rates": {
+      "crash-rates": {
           title: "Reducing Android App Crash Rates: An Actionable Guide",
           category: "App Deployment",
           date: "Nov 15, 2024",
@@ -939,7 +1010,7 @@
             <p>Emulators are great for development, but they don't replicate real-world scenarios like low battery, network drops, or aggressive OEM background task killers. Always test on real, physical devices before releasing.</p>
           `,
         },
-        "app-review-times": {
+      "app-review-times": {
           title: "Understanding Google Play's App Review Times",
           category: "Guide",
           date: "Jan 05, 2025",
@@ -955,7 +1026,7 @@
             <p>Keep a clean track record, utilize Managed Publishing to coordinate releases, and ensure all your Data Safety forms are accurately filled out beforehand to avoid back-and-forth rejections.</p>
           `,
         },
-        "aso-localization": {
+      "aso-localization": {
           title: "How to Localize Your Android App for Global Reach",
           category: "ASO Tips",
           date: "Jan 12, 2025",
@@ -971,7 +1042,7 @@
             <p>If you're targeting Arabic or Hebrew markets, ensure your UI adequately supports RTL layouts. Android simplifies this with start/end padding instead of left/right, and the <code>android:supportsRtl="true"</code> flag in your manifest.</p>
           `,
         },
-        "essential-sdks": {
+      "essential-sdks": {
           title: "Essential SDKs Every Android App Should Have",
           category: "Guide",
           date: "Jan 20, 2025",
@@ -989,7 +1060,7 @@
             <p>Google's Play Core Library is essential for popping up the native in-app review dialog exactly when a user experiences a "win" state in your app.</p>
           `,
         },
-        "developer-api": {
+      "developer-api": {
           title: "A Developer's Guide to Google Play Developer API",
           category: "App Deployment",
           date: "Feb 02, 2025",
@@ -1005,7 +1076,7 @@
             <p>Integrating tools like Fastlane with the Play Developer API turns deployments into a one-click process. Fastlane can automatically generate screenshots, build your app bundle, and push it straight to the Alpha, Beta, or Production tracks.</p>
           `,
         },
-        "accessibility": {
+      "accessibility": {
           title: "Designing for Accessibility on Android",
           category: "Guide",
           date: "Feb 15, 2025",
@@ -1021,7 +1092,7 @@
             <p>Ensure text color has a sufficient contrast ratio (at least 4.5:1 for normal text) against its background. The Accessibility Scanner app provided by Google can help you automatically detect these issues during development.</p>
           `,
         },
-        "app-vs-play": {
+      "app-vs-play": {
           title: "App Store vs. Google Play: A Comparative Strategy",
           category: "Guide",
           date: "Mar 01, 2025",
@@ -1090,26 +1161,26 @@
 
         // Inject JSON-LD Schema
         const schema = {
-          "@context": "https://schema.org",
-          "@type": "Article",
-          "headline": post.title,
-          "image": [ post.image ],
-          "datePublished": new Date(post.date).toISOString(),
-          "dateModified": new Date(post.date).toISOString(),
-          "author": [{
-              "@type": "Organization",
-              "name": "WeAppTesters",
-              "url": "https://weapptesters.com/"
-            }],
-          "publisher": {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": post.title,
+        "image": [ post.image ],
+        "datePublished": new Date(post.date).toISOString(),
+        "dateModified": new Date(post.date).toISOString(),
+        "author": [{
             "@type": "Organization",
             "name": "WeAppTesters",
-            "logo": {
-              "@type": "ImageObject",
-              "url": "https://weapptesters.com/assets/logo.png"
+            "url": "https://weapptesters.com/"
+            }],
+        "publisher": {
+          "@type": "Organization",
+          "name": "WeAppTesters",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https://weapptesters.com/assets/logo.png"
             }
           },
-          "description": plainTextDesc
+        "description": plainTextDesc
         };
         document.getElementById("structured-data").textContent = JSON.stringify(schema);
       });
@@ -1122,17 +1193,17 @@
       window.addEventListener("scroll", () => {
         if (window.scrollY > 20) {
           navbar.classList.add(
-            "bg-[#020617]/90",
-            "backdrop-blur-xl",
-            "border-b",
-            "border-white/5",
+          "bg-[#020617]/90",
+          "backdrop-blur-xl",
+          "border-b",
+          "border-white/5",
           );
         } else {
           navbar.classList.remove(
-            "bg-[#020617]/90",
-            "backdrop-blur-xl",
-            "border-b",
-            "border-white/5",
+          "bg-[#020617]/90",
+          "backdrop-blur-xl",
+          "border-b",
+          "border-white/5",
           );
         }
       });
@@ -1141,42 +1212,45 @@
       function openMobileMenu() {
         const menu = document.getElementById("mobile-menu");
         const panel = document.getElementById("mobile-panel");
+        const navbar = document.getElementById("navbar");
         if (menu && panel) {
           menu.classList.remove("opacity-0", "pointer-events-none");
           menu.classList.add("opacity-100", "pointer-events-auto");
           panel.classList.replace("translate-x-full", "translate-x-0");
-          document.body.style.overflow = "hidden"; // Stop background scroll
+          // Removed overflow hidden to prevent iOS Safari jump to top bug
+          if (navbar) {
+            navbar.classList.remove("backdrop-blur-xl");
+          }
         }
       }
 
       function closeMobileMenu() {
         const menu = document.getElementById("mobile-menu");
         const panel = document.getElementById("mobile-panel");
+        const navbar = document.getElementById("navbar");
         if (menu && panel) {
           panel.classList.replace("translate-x-0", "translate-x-full");
           menu.classList.remove("opacity-100", "pointer-events-auto");
           menu.classList.add("opacity-0", "pointer-events-none");
-          document.body.style.overflow = ""; // Restore scroll
+          if (navbar && window.scrollY > 20) {
+            navbar.classList.add("backdrop-blur-xl");
+          }
         }
       }
 
       // Live Dashboard Simulation
       const logFeed = document.getElementById("log-feed");
-      const devices = [
-        "Pixel 7 Pro",
-        "Samsung S23",
-        "OnePlus 11",
-        "Xiaomi 13",
-        "Pixel 6a",
-        "Nothing Phone 2",
-        "Samsung A54",
+            const devices = [
+        "Day 1", "Day 2", "Day 3", "Day 4", "Day 5", 
+        "Day 6", "Day 7", "Day 8", "Day 9", "Day 10", 
+        "Day 11", "Day 12", "Day 13", "Day 14"
       ];
       const events = [
-        "App Opened",
-        "Screenshot Uploaded",
-        "Feedback Submitted",
-        "Session > 5 mins",
-        "Update Installed",
+      "App Opened",
+      "Screenshot Uploaded",
+      "Feedback Submitted",
+      "Session > 5 mins",
+      "Update Installed",
       ];
 
       function addLog() {
@@ -1187,7 +1261,7 @@
 
         const logItem = document.createElement("div");
         logItem.className =
-          "flex items-center justify-between p-3 bg-[#0f172a] border border-white/5 rounded-lg border-l-2 border-l-lime-500 animate-[fadeIn_0.5s_ease-out]";
+        "flex items-center justify-between p-3 bg-[#0f172a] border border-white/5 rounded-lg border-l-2 border-l-lime-500 animate-[fadeIn_0.5s_ease-out]";
         logItem.innerHTML = `
                 <div class="flex items-center gap-2 md:gap-4 overflow-hidden">
                     <span class="text-slate-500 text-[10px]">${time}</span>
