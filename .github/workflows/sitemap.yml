@@ -32,11 +32,4 @@ jobs:
           
       - name: Notify IndexNow
         run: |
-         curl -X POST "https://api.indexnow.org/indexnow" 
-         -H "Content-Type: application/json" 
-         -d '{
-         "host": "weapptesters.com",
-         "key": "657fde1ff18c47c8b795b0d40bf918f0",
-         "keyLocation": "https://weapptesters.com/657fde1ff18c47c8b795b0d40bf918f0.txt",
-         "urlList": [
-         "https://weapptesters.com/"  ]      }'
+         curl "https://api.indexnow.org/indexnow?url=https://weapptesters.com/&key=657fde1ff18c47c8b795b0d40bf918f0"
