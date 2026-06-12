@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
 
+Disallow: /client_tracking.html
+Disallow: /cert_gen.html
+
 Sitemap: https://weapptesters.com/sitemap.xml
