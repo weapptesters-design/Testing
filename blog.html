@@ -195,7 +195,11 @@
         will-change: background-position;
       }
     </style>
-  </head>
+  
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="apple-touch-icon" href="logo.png" />
+</head>
   <body class="antialiased selection:bg-lime-500/30">
     <!-- Background Elements -->
     <div class="fixed inset-0 grid-pattern -z-10"></div>
@@ -1817,43 +1821,7 @@
       </div>
     </main>
 
-    <!-- Newsletter Section (Good for SEO & Blogs) -->
-    <section
-      class="py-20 bg-[#0b1121] border-t border-white/5 relative overflow-hidden"
-    >
-      <div
-        class="absolute top-0 right-0 w-96 h-96 bg-lime-500/5 rounded-full blur-[100px] pointer-events-none"
-      ></div>
-      <div class="max-w-4xl mx-auto px-6 relative z-10 text-center reveal">
-        <h2 class="text-3xl font-bold text-white mb-4">
-          Never Miss a Policy Update
-        </h2>
-        <p class="text-slate-400 mb-8 max-w-lg mx-auto">
-          Join 2,000+ Android developers getting our monthly insights on Play
-          Console algorithms and app growth.
-        </p>
-        <form
-          class="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto"
-          onsubmit="
-            event.preventDefault();
-            alert('Subscribed!');
-          "
-        >
-          <input
-            type="email"
-            placeholder="Enter your email address"
-            required
-            class="px-5 py-3 rounded-xl bg-[#0f172a] border border-slate-700 text-white focus:outline-none focus:border-lime-500 focus:ring-1 focus:ring-lime-500 w-full transition-colors"
-          />
-          <button
-            type="submit"
-            class="px-6 py-3 rounded-xl bg-lime-400 text-black font-bold hover:bg-lime-300 transition-colors whitespace-nowrap"
-          >
-            Subscribe
-          </button>
-        </form>
-      </div>
-    </section>
+
 
     <!-- Advanced Footer -->
   <footer class="relative bg-[#020617] pt-24 pb-12 overflow-hidden border-t border-white/5">
@@ -2120,41 +2088,114 @@
       </span>
     </a>
 
-    <!-- Blog Filtering Script -->
+    <!-- Blog Filtering & Load More Script -->
     <script>
       document.addEventListener('DOMContentLoaded', () => {
         const filterContainer = document.querySelector('header .flex-wrap.justify-center.gap-3');
+        const loadMoreBtn = document.getElementById('load-more-btn');
+        const articlesGrid = document.getElementById('articles-grid');
+        
         if (!filterContainer) return;
         
         const filterBtns = filterContainer.querySelectorAll('button');
-        const allBadges = document.querySelectorAll('.absolute.top-4.left-4');
         
-        const posts = Array.from(allBadges).map(badge => {
-          return {
-            element: badge.closest('article') || badge.closest('a'),
-            category: badge.textContent.trim().toLowerCase()
-          };
-        }).filter(post => post.element !== null);
+        // Define items per page
+        const ITEMS_PER_PAGE = 6;
+        let currentFilter = 'all topics';
+        let visibleCount = ITEMS_PER_PAGE;
+
+        // Separate featured post from grid posts
+        const featuredArticle = document.querySelector('main > div > article.mb-20');
+        let featuredPost = null;
+        if (featuredArticle) {
+          const badge = featuredArticle.querySelector('.absolute.top-4.left-4');
+          if (badge) {
+            featuredPost = {
+              element: featuredArticle,
+              category: badge.textContent.trim().toLowerCase()
+            };
+          }
+        }
+
+        // Collect grid posts
+        let gridPosts = [];
+        if (articlesGrid) {
+          const gridItems = articlesGrid.querySelectorAll('a.group');
+          gridPosts = Array.from(gridItems).map(element => {
+            const badge = element.querySelector('.absolute.top-4.left-4');
+            return {
+              element: element,
+              category: badge ? badge.textContent.trim().toLowerCase() : ''
+            };
+          });
+        }
+
+        function isMatch(category, filter) {
+          if (filter === 'all topics') return true;
+          return category === filter || category.includes(filter) || filter.includes(category);
+        }
+
+        function updateDisplay() {
+          // Handle Featured Post
+          if (featuredPost) {
+            if (isMatch(featuredPost.category, currentFilter)) {
+              featuredPost.element.style.display = '';
+            } else {
+              featuredPost.element.style.display = 'none';
+            }
+          }
+
+          // Handle Grid Posts
+          const filteredGridPosts = gridPosts.filter(post => isMatch(post.category, currentFilter));
+          
+          // Hide all grid posts first
+          gridPosts.forEach(post => {
+            post.element.style.display = 'none';
+          });
+
+          // Show up to visibleCount
+          for (let i = 0; i < visibleCount && i < filteredGridPosts.length; i++) {
+            filteredGridPosts[i].element.style.display = '';
+          }
+
+          // Toggle Load More button
+          if (loadMoreBtn) {
+            const btnContainer = loadMoreBtn.closest('div.text-center.mt-16');
+            if (btnContainer) {
+              if (visibleCount >= filteredGridPosts.length) {
+                btnContainer.style.display = 'none';
+              } else {
+                btnContainer.style.display = '';
+              }
+            }
+          }
+        }
 
         filterBtns.forEach(btn => {
           btn.addEventListener('click', () => {
-            const filterText = btn.textContent.trim().toLowerCase();
+            currentFilter = btn.textContent.trim().toLowerCase();
             
+            // Update active state of buttons
             filterBtns.forEach(b => {
               b.className = "px-5 py-2 rounded-full bg-white/5 border border-white/10 text-slate-300 text-sm font-medium transition-colors hover:bg-white/10 hover:text-white";
             });
             btn.className = "px-5 py-2 rounded-full bg-lime-400/10 border border-lime-400/30 text-lime-400 text-sm font-medium transition-colors hover:bg-lime-400/20";
 
-            posts.forEach(post => {
-              // 'guide' is a broad term, let's match exact unless 'all topics'
-              if (filterText === 'all topics' || post.category === filterText || post.category.includes(filterText) || filterText.includes(post.category)) {
-                post.element.style.display = '';
-              } else {
-                post.element.style.display = 'none';
-              }
-            });
+            // Reset visible count when filter changes
+            visibleCount = ITEMS_PER_PAGE;
+            updateDisplay();
           });
         });
+
+        if (loadMoreBtn) {
+          loadMoreBtn.addEventListener('click', () => {
+            visibleCount += ITEMS_PER_PAGE;
+            updateDisplay();
+          });
+        }
+
+        // Initialize display
+        updateDisplay();
       });
     </script>
 

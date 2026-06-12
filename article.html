@@ -128,8 +128,41 @@
         font-size: 0.9em;
         color: #a3e635;
       }
+      /* Scroll Reveal */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s cubic-bezier(0.5, 0, 0, 1),
+          transform 0.8s cubic-bezier(0.5, 0, 0, 1);
+        will-change: opacity, transform;
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* Shimmer Effect */
+      .btn-shimmer {
+        background: linear-gradient(
+          110deg,
+          #a3e635 20%,
+          #ecfccb 30%,
+          #a3e635 40%
+        );
+        background-size: 200% auto;
+        animation: shimmer 4s linear infinite;
+      }
+      @keyframes shimmer {
+        to {
+          background-position: -200% center;
+        }
+      }
     </style>
-  </head>
+  
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="logo.png" />
+    <link rel="apple-touch-icon" href="logo.png" />
+</head>
   <body class="antialiased selection:bg-lime-500/30">
     <div class="fixed inset-0 grid-pattern -z-10"></div>
     <div
@@ -428,6 +461,8 @@
             </a>
           </div>
         </div>
+      </div>
+    </div>
     <!-- End Premium Mobile Sidebar -->
 
     <!-- Article Header -->
