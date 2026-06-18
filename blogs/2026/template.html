@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+
+<!--
+================================================================================
+  BLOG SETTINGS — EDIT ONLY THIS SECTION FOR EVERY NEW ARTICLE
+  All other content on this page auto-populates from these values.
+================================================================================
+-->
+<script>
+const BLOG_POST = {
+
+  // ── BASIC INFO ──────────────────────────────────────────────────────────────
+  title:       "The Ultimate Guide to Google Play Console App Deployment",
+  category:    "Featured Guide",
+  date:        "Nov 02, 2024",
+  readTime:    "10 Min Read",
+  excerpt:     "From setting up your developer account to the data safety form and pushing your first AAB. Everything you need to launch your Android app on Google Play.",
+
+  // ── SEO ─────────────────────────────────────────────────────────────────────
+  seoTitle:    "Google Play Console App Deployment Guide 2024 | Adiboy",
+  description: "Step-by-step guide to deploying your Android app on Google Play Console — developer account setup, AAB builds, 14-day closed testing, and production access.",
+  canonical:   "https://weapptesters.com/blogs/2026/google-play-deployment-guide.html",
+
+  // ── FEATURED IMAGE ───────────────────────────────────────────────────────────
+  image:       "https://placehold.co/1200x630/1e293b/a3e635?text=Google+Play+Deployment+Guide",
+  imageAlt:    "Step-by-step guide on Google Play Console app deployment process",
+
+  // ── ARTICLE BODY (HTML allowed) ──────────────────────────────────────────────
+  // Use full HTML: <h2>, <h3>, <p>, <ul>, <li>, <strong>, <a>, <code>, <blockquote>
+  content: `
+    <p>Deploying an app to the Google Play Store is no longer just about uploading an APK and hitting "Publish." In 2024 and beyond, Google has introduced strict testing requirements, data safety forms, and rigid review processes to ensure high-quality apps make it to the store.</p>
+
+    <p>If you are an indie developer or a startup launching your first Android app, the Play Console can feel like a labyrinth. This guide walks you through the exact steps to go from code to production without getting rejected.</p>
+
+    <h2>1. Setting Up Your Developer Account</h2>
+    <p>Before you do anything, you need a Google Play Developer account. There is a one-time $25 registration fee. Be prepared to verify your identity with a government-issued ID. Google is cracking down on anonymous accounts to prevent spam and malware.</p>
+
+    <h2>2. Generating Your App Bundle (.AAB)</h2>
+    <p>Google no longer accepts standard APK files for new apps. You must upload an <strong>Android App Bundle (.aab)</strong>. This allows Google to generate optimized APKs specific to each user's device, which drastically reduces download size.</p>
+    <ul>
+      <li>If you are using <strong>Flutter</strong>: run <code>flutter build appbundle</code></li>
+      <li>If you are using <strong>React Native</strong>: run <code>cd android && ./gradlew bundleRelease</code></li>
+    </ul>
+
+    <h2>3. The 14-Day Closed Testing Rule</h2>
+    <p>If you created your personal developer account after November 13, 2023, you are required to run a closed test with a minimum of <strong>14 continuous testers for 14 days</strong> before you can apply for Production Access.</p>
+    <p>This is where most developers fail. You cannot use emulators or bots. If Google detects artificial engagement, they will ban your account. Services like <a href="https://weapptesters.com" class="text-lime-400 underline hover:text-lime-300">Adiboy</a> exist to provide real human testers on real devices to pass this requirement smoothly.</p>
+
+    <h2>4. The Data Safety Form</h2>
+    <p>You must accurately declare every piece of data your app collects. Do you use Firebase Auth? You are collecting emails. Do you use Crashlytics? You are collecting device IDs. Failure to declare this will result in immediate rejection during the review phase.</p>
+
+    <h2>5. Applying for Production</h2>
+    <p>Once your 14 days of testing are complete, Google will ask you to answer a questionnaire about your testing process. They will ask:</p>
+    <ul>
+      <li>How did you recruit your testers?</li>
+      <li>What feedback did you receive?</li>
+      <li>What changes did you make based on that feedback?</li>
+    </ul>
+    <p>Be thorough. If your answers are vague, Google will force you to test for another 14 days.</p>
+  `
+
+};
+</script>
+<!--
+================================================================================
+  END OF BLOG SETTINGS — DO NOT EDIT ANYTHING BELOW THIS LINE
+================================================================================
+-->
+
+  <!-- Auto-populated meta tags (do not edit) -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Adiboy" />
+
+  <title id="page-title">Loading...</title>
+  <meta id="meta-description" name="description" content="" />
+  <link id="meta-canonical" rel="canonical" href="" />
+
+  <meta property="og:site_name" content="Adiboy" />
+  <meta property="og:type" content="article" />
+  <meta id="meta-og-title"  property="og:title"       content="" />
+  <meta id="meta-og-desc"   property="og:description" content="" />
+  <meta id="meta-og-url"    property="og:url"         content="" />
+  <meta id="meta-og-image"  property="og:image"       content="" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta id="meta-tw-title"  name="twitter:title"       content="" />
+  <meta id="meta-tw-desc"   name="twitter:description" content="" />
+  <meta id="meta-tw-image"  name="twitter:image"       content="" />
+
+  <script id="structured-data" type="application/ld+json"></script>
+
+  <!-- Performance hints -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ["Plus Jakarta Sans", "sans-serif"],
+            mono: ["JetBrains Mono", "monospace"],
+          },
+          colors: { lime: { 400: "#a3e635", 500: "#84cc16" } },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root { --bg-dark: #020617; --glass-border: rgba(255,255,255,0.08); }
+    body { background-color: var(--bg-dark); color: #e2e8f0; overflow-x: hidden; -webkit-tap-highlight-color: transparent; }
+
+    .grid-pattern {
+      background-size: 40px 40px;
+      background-image:
+        linear-gradient(to right,  rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+      mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+      -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .glass-card {
+      background: rgba(15,23,42,0.6);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      will-change: transform;
+    }
+
+    .reveal { opacity:0; transform:translateY(30px); transition: opacity 0.8s cubic-bezier(0.5,0,0,1), transform 0.8s cubic-bezier(0.5,0,0,1); will-change:opacity,transform; }
+    .reveal.active { opacity:1; transform:translateY(0); }
+
+    .btn-shimmer {
+      background: linear-gradient(110deg, #a3e635 20%, #ecfccb 30%, #a3e635 40%);
+      background-size: 200% auto;
+      animation: shimmer 4s linear infinite;
+    }
+    @keyframes shimmer { to { background-position: -200% center; } }
+
+    /* ── Article Prose ── */
+    .prose h2 { color:#fff; font-weight:800; font-size:1.875rem; margin-top:2.5rem; margin-bottom:1rem; }
+    .prose h3 { color:#fff; font-weight:700; font-size:1.5rem;   margin-top:2rem;   margin-bottom:0.75rem; }
+    .prose p  { color:#94a3b8; line-height:1.8; margin-bottom:1.25rem; font-size:1.125rem; }
+    .prose ul { color:#94a3b8; list-style-type:disc; padding-left:1.5rem; margin-bottom:1.25rem; font-size:1.125rem; }
+    .prose ol { color:#94a3b8; list-style-type:decimal; padding-left:1.5rem; margin-bottom:1.25rem; font-size:1.125rem; }
+    .prose li { margin-bottom:0.5rem; }
+    .prose strong { color:#e2e8f0; font-weight:600; }
+    .prose a { color:#a3e635; text-decoration:underline; }
+    .prose a:hover { color:#84cc16; }
+    .prose code { background:rgba(255,255,255,0.1); padding:0.2rem 0.4rem; border-radius:0.25rem; font-family:"JetBrains Mono",monospace; font-size:0.9em; color:#a3e635; }
+    .prose pre { background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.1); border-radius:0.75rem; padding:1.25rem; overflow-x:auto; margin-bottom:1.5rem; }
+    .prose pre code { background:none; padding:0; color:#a3e635; }
+    .prose blockquote { border-left:3px solid #a3e635; padding-left:1.25rem; margin:1.5rem 0; color:#64748b; font-style:italic; }
+
+    /* Reading progress bar */
+    #reading-progress { position:fixed; top:0; left:0; height:3px; background:linear-gradient(to right,#a3e635,#22c55e); z-index:100; width:0%; transition:width 0.1s linear; }
+  </style>
+
+  <!-- Favicons (paths relative to root) -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+</head>
+<body class="antialiased selection:bg-lime-500/30">
+
+  <!-- Reading progress bar -->
+  <div id="reading-progress"></div>
+
+  <!-- Background -->
+  <div class="fixed inset-0 grid-pattern -z-10"></div>
+  <div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-lime-500/50 to-transparent z-50"></div>
+
+  <!-- ── NAVIGATION ────────────────────────────────────────────────────────── -->
+  <nav id="navbar" class="fixed w-full z-40 transition-all duration-300 py-4 lg:py-6">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+      <div class="flex items-center gap-3 cursor-pointer group">
+        <a href="/blog.html" class="p-2 -ml-2 rounded-full hover:bg-white/10 transition-colors z-50 flex items-center justify-center" aria-label="Back to Blog" title="Back to Blog" onclick="event.stopPropagation();">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-white hover:text-lime-400 transition-colors">
+            <path d="m15 18-6-6 6-6"/>
+          </svg>
+        </a>
+        <img src="/logo.png" alt="Adiboy Logo" class="w-10 h-10 object-contain relative z-10 rounded-xl" />
+        <span class="text-xl font-bold tracking-tight text-white">We<span class="text-lime-400">App</span>Testers</span>
+      </div>
+
+      <!-- Desktop Menu -->
+      <div class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-400">
+        <a href="/index.html#proof"        class="hover:text-white transition-colors">Proof</a>
+        <a href="/how-it-works.html"       class="hover:text-white transition-colors">Process</a>
+        <a href="/pricing.html"            class="hover:text-white transition-colors">Pricing</a>
+        <a href="/index.html#faq"          class="hover:text-white transition-colors">FAQ</a>
+        <a href="/blog.html"               class="text-lime-400 font-bold">Blog</a>
+        <a href="https://wa.me/919122061839?text=Hi%2C%20I%20want%20to%20get%20my%20app%20tested%20for%20Google%20Play%20production%20access" target="_blank"
+           class="px-6 py-2.5 btn-shimmer text-black font-bold rounded-lg shadow-[0_0_20px_rgba(163,230,53,0.3)] hover:shadow-[0_0_30px_rgba(163,230,53,0.5)] transition-all transform hover:-translate-y-0.5 inline-block text-center">
+          Start Testing
+        </a>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <button type="button" id="menu-btn" class="lg:hidden text-white p-2 relative z-50 cursor-pointer" onclick="openMobileMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── MOBILE SIDEBAR ────────────────────────────────────────────────────── -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300 lg:hidden">
+    <div id="mobile-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeMobileMenu()"></div>
+    <div id="mobile-panel" class="absolute top-0 right-0 w-[85%] max-w-sm h-full bg-[#0a0f1c] border-l border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] transform translate-x-full transition-transform duration-300 ease-out flex flex-col">
+      <div class="flex justify-between items-center p-6 border-b border-white/5 bg-[#020617]">
+        <div class="flex items-center gap-3">
+          <img loading="lazy" decoding="async" src="/logo.png" alt="Adiboy Logo" class="w-8 h-8 object-contain rounded-lg" />
+          <span class="text-xl font-bold tracking-tight text-white">Menu</span>
+        </div>
+        <button type="button" class="text-slate-400 hover:text-white transition-colors bg-white/5 hover:bg-white/10 p-2 rounded-lg cursor-pointer" onclick="closeMobileMenu()">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+        </button>
+      </div>
+      <div class="flex-1 overflow-y-auto p-6 flex flex-col gap-2">
+        <a href="/index.html#proof"  class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20" onclick="closeMobileMenu()">Real Proof</a>
+        <a href="/how-it-works.html" class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20" onclick="closeMobileMenu()">Process</a>
+        <a href="/pricing.html"      class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20" onclick="closeMobileMenu()">Pricing</a>
+        <a href="/index.html#faq"    class="group flex items-center gap-4 text-lg font-medium text-slate-300 hover:text-lime-400 p-4 rounded-xl hover:bg-lime-400/10 transition-all border border-transparent hover:border-lime-500/20" onclick="closeMobileMenu()">FAQ</a>
+        <a href="/blog.html"         class="group flex items-center gap-4 text-lg font-medium text-lime-400 p-4 rounded-xl bg-lime-400/10 transition-all border border-lime-500/20" onclick="closeMobileMenu()">Blog</a>
+      </div>
+      <div class="p-6 border-t border-white/5 bg-[#020617]">
+        <p class="text-xs text-slate-500 mb-4 text-center uppercase tracking-widest font-bold">Ready to get approved?</p>
+        <a href="https://wa.me/919122061839?text=Hi%2C%20I%20want%20to%20get%20my%20app%20tested%20for%20Google%20Play%20production%20access" target="_blank" onclick="closeMobileMenu()"
+           class="w-full py-4 bg-lime-400 text-black font-bold text-lg rounded-xl text-center flex items-center justify-center gap-2 shadow-[0_0_20px_rgba(163,230,53,0.3)] hover:bg-lime-300 transition-colors">
+          Start Testing
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ARTICLE HERO ──────────────────────────────────────────────────────── -->
+  <header class="relative pt-32 pb-0 lg:pt-44 overflow-hidden">
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-lime-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-4xl mx-auto px-6 relative z-10 text-center reveal active">
+      <!-- Breadcrumb -->
+      <nav class="flex items-center justify-center gap-2 text-xs text-slate-500 font-mono mb-6" aria-label="Breadcrumb">
+        <a href="/index.html" class="hover:text-lime-400 transition-colors">Home</a>
+        <span>/</span>
+        <a href="/blog.html" class="hover:text-lime-400 transition-colors">Blog</a>
+        <span>/</span>
+        <span id="breadcrumb-category" class="text-slate-400"></span>
+      </nav>
+
+      <!-- Meta row -->
+      <div class="flex items-center justify-center flex-wrap gap-3 text-sm text-slate-500 mb-6 font-mono">
+        <span id="article-category" class="bg-lime-500/10 text-lime-400 px-3 py-1 rounded-full border border-lime-500/20 uppercase tracking-wider text-xs font-bold"></span>
+        <span id="article-date"></span>
+        <span class="w-1 h-1 rounded-full bg-slate-600"></span>
+        <span id="article-readtime"></span>
+      </div>
+
+      <h1 id="article-title" class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-8 tracking-tight leading-tight"></h1>
+
+      <p id="article-excerpt" class="text-lg text-slate-400 leading-relaxed max-w-2xl mx-auto mb-12"></p>
+
+      <!-- Featured image -->
+      <div class="w-full aspect-[21/9] rounded-3xl overflow-hidden relative border border-white/10 shadow-2xl bg-slate-900">
+        <img loading="eager" decoding="async"
+          id="article-image" src="" alt=""
+          class="w-full h-full object-cover opacity-0 transition-opacity duration-500"
+          onload="this.classList.remove('opacity-0')" />
+      </div>
+    </div>
+  </header>
+
+  <!-- ── ARTICLE BODY ──────────────────────────────────────────────────────── -->
+  <main class="py-16 relative z-10 bg-[#050506] border-t border-white/5 mt-12">
+    <div class="max-w-3xl mx-auto px-6">
+
+      <!-- Content -->
+      <article id="article-content" class="prose prose-invert prose-lg max-w-none reveal active"></article>
+
+      <!-- Mid-article CTA -->
+      <div class="mt-16 p-8 bg-lime-400/10 border border-lime-400/20 rounded-3xl text-center reveal">
+        <p class="text-xs text-lime-400 font-bold uppercase tracking-widest mb-3">Need Real Testers?</p>
+        <h3 class="text-2xl font-bold text-white mb-4">Stuck in Closed Testing?</h3>
+        <p class="text-slate-300 mb-6">Let our team of real human testers handle the 14-day requirement for you. Guaranteed approval or we re-test for free.</p>
+        <a href="https://wa.me/919122061839" target="_blank"
+           class="inline-block px-8 py-4 bg-lime-400 text-black font-bold rounded-xl hover:bg-lime-300 transition-colors shadow-[0_0_20px_rgba(163,230,53,0.3)]">
+          Get Testers Now →
+        </a>
+      </div>
+
+      <!-- Share row -->
+      <div class="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 reveal">
+        <span class="text-sm text-slate-400 font-mono">Share this article:</span>
+        <div class="flex gap-3">
+          <a id="share-twitter" href="#" target="_blank" rel="noopener"
+             class="flex items-center gap-2 text-xs text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg border border-white/10 transition-all">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Twitter / X
+          </a>
+          <a id="share-wa" href="#" target="_blank" rel="noopener"
+             class="flex items-center gap-2 text-xs text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 px-4 py-2 rounded-lg border border-white/10 transition-all">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Back to blog -->
+      <div class="mt-8 text-center reveal">
+        <a href="/blog.html" class="inline-flex items-center gap-2 text-slate-400 hover:text-lime-400 transition-colors text-sm font-mono">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></svg>
+          Back to All Articles
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── FOOTER ────────────────────────────────────────────────────────────── -->
+  <footer class="relative bg-[#020617] pt-24 pb-12 overflow-hidden border-t border-white/5">
+    <div class="absolute inset-0 grid-pattern opacity-5 pointer-events-none"></div>
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-64 bg-lime-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <div class="grid md:grid-cols-2 lg:grid-cols-12 gap-12 mb-16">
+
+        <!-- Brand -->
+        <div class="lg:col-span-4 space-y-6">
+          <div class="flex items-center gap-3">
+            <img loading="lazy" decoding="async" src="/logo.png" alt="Adiboy Logo" class="w-10 h-10 object-contain rounded-xl" />
+            <div>
+              <span class="text-2xl font-bold tracking-tight text-white block leading-none">We<span class="text-lime-400">App</span>Testers</span>
+              <span class="text-[10px] text-slate-500 uppercase tracking-widest font-bold">Production Ready</span>
+            </div>
+          </div>
+          <p class="text-slate-400 text-sm leading-relaxed max-w-xs">The #1 platform for Android developers to meet Google Play's 12 tester requirement. Real humans, real devices, guaranteed approval.</p>
+          <div class="flex gap-3">
+            <a href="https://www.instagram.com/weapptesters" class="w-10 h-10 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-slate-400 hover:bg-[#E1306C] hover:text-white hover:border-[#E1306C]/50 transition-all duration-300">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zm0 10.162a3.997 3.997 0 110-7.993 3.997 3.997 0 010 7.993zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/company/weapptesters/" class="w-10 h-10 rounded-lg bg-white/5 border border-white/5 flex items-center justify-center text-slate-400 hover:bg-[#0077b5] hover:text-white hover:border-[#0077b5]/50 transition-all duration-300">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Platform links -->
+        <div class="md:col-span-1 lg:col-span-2">
+          <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider border-b border-white/5 pb-2 inline-block">Platform</h4>
+          <ul class="space-y-3 text-sm text-slate-400">
+            <li><a href="/index.html#proof"  class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>Real Proof</a></li>
+            <li><a href="/how-it-works.html" class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>How It Works</a></li>
+            <li><a href="/pricing.html"      class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>Pricing</a></li>
+            <li><a href="/blog.html"         class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>Blog</a></li>
+            <li><a href="/index.html#faq"    class="hover:text-lime-400 transition-colors flex items-center gap-2 group"><span class="w-1 h-1 rounded-full bg-slate-600 group-hover:bg-lime-400 transition-colors"></span>FAQ</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="lg:col-span-6">
+          <h4 class="text-white font-bold mb-6 text-sm uppercase tracking-wider border-b border-white/5 pb-2 inline-block">Contact Us</h4>
+          <a href="https://wa.me/919122061839?text=Hi%2C%20I%20have%20a%20query%20about%20your%20testing%20service" target="_blank"
+             class="group flex items-center gap-4 p-4 rounded-2xl bg-white/5 border border-white/10 hover:bg-green-500/10 hover:border-green-500/20 transition-all w-fit">
+            <div class="w-12 h-12 rounded-full bg-[#25D366] flex items-center justify-center text-white shadow-[0_0_15px_rgba(37,211,102,0.3)]">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            </div>
+            <div>
+              <div class="text-white font-bold text-sm group-hover:text-lime-400 transition-colors">Chat on WhatsApp</div>
+              <div class="text-slate-400 text-xs flex items-center gap-1.5 mt-1">
+                <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span></span>
+                Online • +91 91220 61839
+              </div>
+            </div>
+          </a>
+          <div class="mt-6 flex items-center gap-3 text-sm text-slate-400 hover:text-white transition-colors group p-2 rounded-lg hover:bg-white/5 w-fit">
+            <div class="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center group-hover:bg-lime-400/20 group-hover:text-lime-400 transition-colors">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </div>
+            <a href="mailto:weapptesters@gmail.com" class="font-medium">weapptesters@gmail.com</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-center items-center gap-4 text-xs text-slate-500 font-mono">
+        <div class="flex items-center gap-2">
+          <span>&copy; 2024 WeAppTesters.</span>
+          <span class="hidden md:inline">•</span>
+          <span>All Rights Reserved.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/919122061839?text=Hi%2C%20I%20have%20a%20query%20about%20your%20testing%20service" target="_blank"
+     class="fixed bottom-6 right-6 lg:bottom-10 lg:right-10 z-50 bg-[#25D366] text-white p-4 rounded-full shadow-[0_4px_20px_rgba(37,211,102,0.5)] hover:bg-[#20bd5a] hover:scale-110 hover:shadow-[0_6px_25px_rgba(37,211,102,0.7)] transition-all duration-300 group flex items-center justify-center">
+    <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+    <span class="absolute top-0 right-0 flex h-4 w-4">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-4 w-4 bg-red-500 border-2 border-white"></span>
+    </span>
+    <span class="absolute right-full mr-4 bg-slate-900 text-white text-xs font-bold px-3 py-2 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none hidden md:block">Chat with us!</span>
+  </a>
+
+  <!-- ── SCRIPTS ────────────────────────────────────────────────────────────── -->
+  <script>
+    // ── 1. Populate all meta tags + page content from BLOG_POST ──────────────
+    (function() {
+      const p = BLOG_POST;
+
+      // <title> & meta description
+      document.getElementById("page-title").textContent    = p.seoTitle;
+      document.getElementById("meta-description").setAttribute("content", p.description);
+      document.getElementById("meta-canonical").setAttribute("href",      p.canonical);
+
+      // Open Graph
+      document.getElementById("meta-og-title").setAttribute("content",  p.seoTitle);
+      document.getElementById("meta-og-desc").setAttribute("content",   p.description);
+      document.getElementById("meta-og-url").setAttribute("content",    p.canonical);
+      document.getElementById("meta-og-image").setAttribute("content",  p.image);
+
+      // Twitter
+      document.getElementById("meta-tw-title").setAttribute("content",  p.seoTitle);
+      document.getElementById("meta-tw-desc").setAttribute("content",   p.description);
+      document.getElementById("meta-tw-image").setAttribute("content",  p.image);
+
+      // JSON-LD Article schema
+      const schema = {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": p.title,
+        "description": p.description,
+        "image": p.image,
+        "datePublished": p.date,
+        "author": { "@type": "Organization", "name": "Adiboy", "url": "https://weapptesters.com" },
+        "publisher": {
+          "@type": "Organization",
+          "name": "Adiboy",
+          "logo": { "@type": "ImageObject", "url": "https://weapptesters.com/logo.png" }
+        },
+        "mainEntityOfPage": { "@type": "WebPage", "@id": p.canonical }
+      };
+      document.getElementById("structured-data").textContent = JSON.stringify(schema);
+
+      // Visible article elements
+      document.getElementById("article-title").textContent    = p.title;
+      document.getElementById("article-category").textContent = p.category;
+      document.getElementById("article-date").textContent     = p.date;
+      document.getElementById("article-readtime").textContent = p.readTime;
+      document.getElementById("article-excerpt").textContent  = p.excerpt;
+      document.getElementById("breadcrumb-category").textContent = p.category;
+
+      const img = document.getElementById("article-image");
+      img.src = p.image;
+      img.alt = p.imageAlt;
+
+      document.getElementById("article-content").innerHTML = p.content;
+
+      // Share links
+      const shareText = encodeURIComponent(p.title + " — " + p.canonical);
+      document.getElementById("share-twitter").href = "https://twitter.com/intent/tweet?text=" + shareText;
+      document.getElementById("share-wa").href      = "https://wa.me/?text=" + shareText;
+    })();
+      // ── 2. Navbar scroll ──────────────────────────────────────────────────────
+    const navbar = document.getElementById("navbar");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 20) {
+        navbar.classList.add("bg-[#020617]/90","backdrop-blur-xl","border-b","border-white/5");
+      } else {
+        navbar.classList.remove("bg-[#020617]/90","backdrop-blur-xl","border-b","border-white/5");
+      }
+    });
+
+    // ── 3. Mobile menu ────────────────────────────────────────────────────────
+    function openMobileMenu() {
+      const menu  = document.getElementById("mobile-menu");
+      const panel = document.getElementById("mobile-panel");
+      if (menu && panel) {
+        menu.classList.remove("opacity-0","pointer-events-none");
+        menu.classList.add("opacity-100","pointer-events-auto");
+        panel.classList.replace("translate-x-full","translate-x-0");
+      }
+    }
+    function closeMobileMenu() {
+      const menu  = document.getElementById("mobile-menu");
+      const panel = document.getElementById("mobile-panel");
+      if (menu && panel) {
+        panel.classList.replace("translate-x-0","translate-x-full");
+        menu.classList.remove("opacity-100","pointer-events-auto");
+        menu.classList.add("opacity-0","pointer-events-none");
+      }
+    }
+
+    // ── 4. Scroll reveal ──────────────────────────────────────────────────────
+    const revealObserver = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("active"); }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+
+    // ── 5. Reading progress bar ───────────────────────────────────────────────
+    window.addEventListener("scroll", () => {
+      const main  = document.getElementById("article-content");
+      const bar   = document.getElementById("reading-progress");
+      if (!main || !bar) return;
+      const top   = main.getBoundingClientRect().top + window.scrollY;
+      const h     = main.offsetHeight;
+      const prog  = Math.min(Math.max((window.scrollY - top) / (h - window.innerHeight) * 100, 0), 100);
+      bar.style.width = prog + "%";
+    });
+  </script>
+
+</body>
+</html>
