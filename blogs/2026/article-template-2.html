@@ -182,84 +182,41 @@ const BLOG_POST = {
   <div class="fixed inset-0 grid-pattern -z-10"></div>
   <div class="fixed top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-lime-500/50 to-transparent z-50"></div>
 
-<!-- Navigation -->
-    <nav
-      id="navbar"
-      class="fixed w-full z-40 transition-all duration-300 py-4 lg:py-6"
-    >
-      <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-        <div class="flex items-center gap-3 cursor-pointer group">
-          <img loading="lazy" decoding="async"
-            src="logo.png"
-            alt="WeAppTesters Logo"
-            class="w-10 h-10 object-contain relative z-10 rounded-xl"
-          />
-          <span class="text-xl font-bold tracking-tight text-white"
-            >We<span class="text-lime-400">App</span>Testers</span
-          >
-        </div>
-
-        <!-- Desktop Menu -->
-        <div
-          class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-400"
-        >
-          <a href="#proof" class="hover:text-white transition-colors"
-            >Proof</a
-          >
-          <a
-            href="https://weapptesters.com/how-it-works"
-            class="hover:text-white transition-colors"
-            >Process</a
-          >
-          <a
-            href="https://weapptesters.com/pricing"
-            class="hover:text-white transition-colors"
-            >Pricing</a
-          >
-          <a href="#faq" class="hover:text-white transition-colors"
-            >FAQ</a
-          >
-          <a href="https://weapptesters.com/blog" class="hover:text-white transition-colors"
-            >Blog</a
-          >
-          <a href="https://weapptesters.com/success-stories" class="hover:text-white transition-colors"
-            >Success Stories</a
-          >
-          <a
-            href="https://wa.me/919122061839?text=Hi%2C%20I%20want%20to%20get%20my%20app%20tested%20for%20Google%20Play%20production%20access"
-            target="_blank"
-            class="px-6 py-2.5 btn-shimmer text-black font-bold rounded-lg shadow-[0_0_20px_rgba(163,230,53,0.3)] hover:shadow-[0_0_30px_rgba(163,230,53,0.5)] transition-all transform hover:-translate-y-0.5 inline-block text-center"
-          >
-            Start Testing
-          </a>
-        </div>
-
-        <!-- Mobile Menu Toggle Button -->
-        <button
-          type="button"
-          id="menu-btn"
-          class="lg:hidden text-white p-2 relative z-50 cursor-pointer"
-          onclick="openMobileMenu()"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            class="w-8 h-8"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <line x1="4" x2="20" y1="12" y2="12" />
-            <line x1="4" x2="20" y1="6" y2="6" />
-            <line x1="4" x2="20" y1="18" y2="18" />
+  <!-- ── NAVIGATION ────────────────────────────────────────────────────────── -->
+  <nav id="navbar" class="fixed w-full z-40 transition-all duration-300 py-4 lg:py-6">
+    <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+      <div class="flex items-center gap-3 cursor-pointer group">
+        <a href="https://weapptesters.com/blog" class="p-2 -ml-2 rounded-full hover:bg-white/10 transition-colors z-50 flex items-center justify-center" aria-label="Back to Blog" title="Back to Blog" onclick="event.stopPropagation();">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-white hover:text-lime-400 transition-colors">
+            <path d="m15 18-6-6 6-6"/>
           </svg>
-        </button>
+        </a>
+        <img src="https://weapptesters.com/logo.png" alt="We App Testers Logo" class="w-10 h-10 object-contain relative z-10 rounded-xl" />
+        <span class="text-xl font-bold tracking-tight text-white">We<span class="text-lime-400">App</span>Testers</span>
       </div>
-    </nav>
 
-  
+      <!-- Desktop Menu -->
+      <div class="hidden lg:flex items-center gap-8 text-sm font-semibold text-slate-400">
+        <a href="https://weapptesters.com/#proof"        class="hover:text-white transition-colors">Proof</a>
+        <a href="https://weapptesters.com/how-it-works"       class="hover:text-white transition-colors">Process</a>
+        <a href="https://weapptesters.com/pricing"            class="hover:text-white transition-colors">Pricing</a>
+        <a href="https://weapptesters.com/#faq"          class="hover:text-white transition-colors">FAQ</a>
+        <a href="https://weapptesters.com/blog"               class="text-lime-400 font-bold">Blog</a>
+        <a href="https://wa.me/919122061839?text=Hi%2C%20I%20want%20to%20get%20my%20app%20tested%20for%20Google%20Play%20production%20access" target="_blank"
+           class="px-6 py-2.5 btn-shimmer text-black font-bold rounded-lg shadow-[0_0_20px_rgba(163,230,53,0.3)] hover:shadow-[0_0_30px_rgba(163,230,53,0.5)] transition-all transform hover:-translate-y-0.5 inline-block text-center">
+          Start Testing
+        </a>
+      </div>
+
+      <!-- Mobile Toggle -->
+      <button type="button" id="menu-btn" class="lg:hidden text-white p-2 relative z-50 cursor-pointer" onclick="openMobileMenu()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
   <!-- ── MOBILE SIDEBAR ────────────────────────────────────────────────────── -->
   <div id="mobile-menu" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-opacity duration-300 lg:hidden">
     <div id="mobile-backdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm" onclick="closeMobileMenu()"></div>
